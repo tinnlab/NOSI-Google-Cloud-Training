@@ -1,0 +1,17 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Getting Started
+    chapters:
+      - file: VertexAI
+  - caption: Module 01
+    chapters:
+      - file: Module1-Data_Processing
+  - caption: Module 02
+    chapters:
+      - file: Module1-Data_Processing2
+
+
