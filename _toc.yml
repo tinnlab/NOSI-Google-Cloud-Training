@@ -7,11 +7,12 @@ parts:
   - caption: Getting Started
     chapters:
       - file: VertexAI
+
   - caption: Module 01
     chapters:
-      - file: Module1-Data_Processing
+      - file: Module01-Data_Processing
+      - file: Module01-Gene_Mapping
+
   - caption: Module 02
     chapters:
-      - file: Module1-Data_Processing2
-
-
+      - file: Module02-DE_Analysis
