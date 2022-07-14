@@ -12,7 +12,11 @@ jobs:
     - uses: actions/checkout@v2
    
     - name: Install R dependencies
-      run: sudo apt-get update && sudo apt-get install -y r-cran-irkernel
+      run: |
+        echo "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/" | sudo tee -a /etc/apt/sources.list
+        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 51716619E084DAB9
+        sudo apt-get update
+        sudo apt-get install -y r-cran-irkernel
       
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
