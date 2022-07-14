@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v2
    
     - name: Install R dependencies
-      run: sudo apt-get install -y r-cran-irkernel
+      run: sudo apt-get update && sudo apt-get install -y r-cran-irkernel
       
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
