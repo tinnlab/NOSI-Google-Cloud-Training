@@ -1,23 +1,15 @@
-name: deploy
-
-on:
-  push:
-    branches:
-    - main
-
-jobs:
-  deploy-book:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
+@ -16,4 +16,25 @@ jobs:
+        sudo add-apt-repository ppa:c2d4u.team/c2d4u4.0+
+        sudo apt-get update
+        sudo apt-get install -y r-cran-irkernel
+        
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
         python-version: 3.8
-
-    - name: Install dependencies
+    - name: Install python dependencies
       run: pip install -r requirements.txt
-
+    
     - name: Build the book
       run: jupyter-book build .
         
