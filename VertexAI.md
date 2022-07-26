@@ -36,7 +36,9 @@ To start the virtual machine, select your notebook in the __USER-MANAGED NOTESBO
 
 ## Downloading and Running Tutorial Files
 
-Now that you have successfully created your virtual machine, and you will be directed to Jupyterlab screen. The next step is to import our CPA's Github repository. This can be done by selecting the __Git__ from the top menu in Jupyterlab, and choosing the __Clone a Repository__ option. 
+Now that you have successfully created your virtual machine, and you will be directed to Jupyterlab screen. 
+The next step is to import our CPA's notebooks start the course. 
+This can be done by selecting the __Git__ from the top menu in Jupyterlab, and choosing the __Clone a Repository__ option. 
 Next you can copy and paste in the link of repository: "https://github.com/tinnlab/NOSI-Google-Cloud-Training.git" (without quotation marks) and click __Clone__.
 
 ![](./images/SettingGC/Clone_Git.png)
