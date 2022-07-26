@@ -17,10 +17,16 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y r-cran-irkernel
         
+    - name: Setup R lib paths
+      run: |
+        mkdir -p /home/${USER}/.rpackages
+        echo "R_LIBS=/home/${USER}/.rpackages" > /home/${USER}/.Renviron
+        
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
         python-version: 3.8
+    
     - name: Install python dependencies
       run: pip install -r requirements.txt
     
