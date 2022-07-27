@@ -20,7 +20,11 @@ jobs:
     - name: Setup R lib paths
       run: |
         mkdir -p /home/${USER}/.rpackages
+        mkdir -p /home/${USER}/.Rtmp
         echo "R_LIBS=/home/${USER}/.rpackages" > /home/${USER}/.Renviron
+        echo "TMP=/home/${USER}/.Rtmp" > /home/${USER}/.Renviron
+        echo "TEMP=/home/${USER}/.Rtmp" > /home/${USER}/.Renviron
+        echo "TMPDIR=/home/${USER}/.Rtmp" > /home/${USER}/.Renviron
         
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
