@@ -10,7 +10,7 @@ parts:
 
   - caption: Module 01
     chapters:
-      - file: Module01-Data_Processing
+      - file: Module01-GEO_Data_Processing
       - file: Module01-Gene_Mapping
 
   - caption: Module 02
