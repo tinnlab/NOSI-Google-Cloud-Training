@@ -16,3 +16,7 @@ parts:
   - caption: Module 02
     chapters:
       - file: Module02-DE_Analysis
+
+  - caption: Module 03
+    chapters:
+      - file: Module03-Gene_Set_and_Pathway
