@@ -20,3 +20,7 @@ parts:
   - caption: Module 03
     chapters:
       - file: Module03-Gene_Set_and_Pathway
+
+  - caption: Module 04
+    chapters:
+      - file: Module04-Pathway_Analysis
