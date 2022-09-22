@@ -93,16 +93,17 @@ jobs:
           tar -czf source.tar.gz *
           gcloud compute scp --zone=us-central1-b --project=${{ secrets.GCLOUD_PROJECT_ID }} source.tar.gz ${{ steps.instance.outputs.INSTANCE_NAME }}:~/ 
 
-          read -r -d '' BUILD <<EOF
+          BUILD=$(cat <<EOF
           docker cp source.tar.gz payload-container:/home/jupyter/
-          docker exec payload-container bash -c "cd /home/jupyter/ && mkdir source && tar -xf source.tar.gz -C source"
-          docker exec payload-container bash -c "cd /home/jupyter/ && mkdir source && tar -xf source.tar.gz -C source"
+          docker exec payload-container bash -c "cd /home/jupyter/ && mkdir -p source && tar -xf source.tar.gz -C source"
           docker exec payload-container bash -c "cd /home/jupyter/source && pip3 install -r requirements.txt && jupyter-book build ."
           EOF
+          )
 
-          gcloud compute ssh ${{ steps.instance.outputs.INSTANCE_NAME }} --project=${{ secrets.GCLOUD_PROJECT_ID }} --zone=us-central1-b --command="$BUILD"
+          gcloud compute ssh ${{ steps.instance.outputs.INSTANCE_NAME }} --project=${{ secrets.GCLOUD_PROJECT_ID }} --zone=us-central1-b --command=$BUILD
       
       - name: Stop workbench instance
+        if: success() || failure()
         run: |
          gcloud notebooks instances stop ${{ steps.instance.outputs.INSTANCE_NAME }} --project=${{ secrets.GCLOUD_PROJECT_ID }} --location=us-central1-b
 
