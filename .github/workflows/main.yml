@@ -77,3 +77,44 @@ jobs:
           target_repo_url: ${{ secrets.GCLOUD_GIT_ADDRESS }}
           ssh_private_key: ${{ secrets.GCLOUD_GIT_PRIVATE_KEY }}
           ssh_username: ${{ secrets.GCLOUD_GIT_PRIVATE_KEY_ID }}
+  
+  build-on-vertex-ai:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+        
+      - name: Auth google cloud
+        uses: google-github-actions/auth@v0.8.0
+        with:
+          credentials_json: ${{ secrets.GCP_VERTEX_AI_CREDENTIALS }}
+      
+      - name: Create workbench
+        run: |
+          export GCLOUD_PROJECT=${{ secrets.GCLOUD_PROJECT_ID }}
+          export INSTANCE_NAME=nosi-ci-test-instance-`date +"%Y-%m-%d-%H-%M-%S"`
+          gcloud notebooks instances create $INSTANCE_NAME --container-repository=gcr.io/deeplearning-platform-release/r-cpu.4-1 --container-tag=latest --machine-type=n1-standard-4 --location=us-central1-b --project=$GCLOUD_PROJECT
+          sleep 120
+          
+      - name: Build the book
+        run: |
+          tar -czf source.tar.gz *
+          gcloud compute scp --zone=us-central1-b --project=$GCLOUD_PROJECT source.tar.gz $INSTANCE_NAME:~/ 
+
+          read -r -d '' BUILD <<EOF
+          docker cp source.tar.gz payload-container:/home/jupyter/
+          docker exec payload-container bash -c "cd /home/jupyter/ && mkdir source && tar -xf source.tar.gz -C source"
+          docker exec payload-container bash -c "cd /home/jupyter/ && mkdir source && tar -xf source.tar.gz -C source"
+          docker exec payload-container bash -c "cd /home/jupyter/source && pip3 install -r requirements.txt && jupyter-book build ."
+          EOF
+
+          gcloud compute ssh $INSTANCE_NAME --project=$GCLOUD_PROJECT --zone=us-central1-b --command="${BUILD}"
+      
+      - name: Stop workbench instance
+        run: |
+         gcloud notebooks instances stop $INSTANCE_NAME --project=$GCLOUD_PROJECT --location=us-central1-b
+
+          
+      
