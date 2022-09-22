@@ -65,3 +65,15 @@ jobs:
       with:
         path: ./
         destination: ${{ secrets.GCLOUD_BUCKET_BACKUP_ID }}
+  
+  mirror-gcloud:                                       
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url: ${{ secrets.GCLOUD_GIT_ADDRESS }}
+          ssh_private_key: ${{ secrets.GCLOUD_GIT_PRIVATE_KEY }}
+          ssh_username: ${{ secrets.GCLOUD_GIT_PRIVATE_KEY_ID }}
