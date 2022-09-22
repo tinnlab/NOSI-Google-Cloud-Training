@@ -92,16 +92,17 @@ jobs:
           credentials_json: ${{ secrets.GCP_VERTEX_AI_CREDENTIALS }}
       
       - name: Create workbench
+        id: instance
         run: |
-          export GCLOUD_PROJECT=${{ secrets.GCLOUD_PROJECT_ID }}
-          export INSTANCE_NAME=nosi-ci-test-instance-`date +"%Y-%m-%d-%H-%M-%S"`
-          gcloud notebooks instances create $INSTANCE_NAME --container-repository=gcr.io/deeplearning-platform-release/r-cpu.4-1 --container-tag=latest --machine-type=n1-standard-4 --location=us-central1-b --project=$GCLOUD_PROJECT
+          INSTANCE_NAME=nosi-ci-test-instance-`date +"%Y-%m-%d-%H-%M-%S"`
+          gcloud notebooks instances create $INSTANCE_NAME --container-repository=gcr.io/deeplearning-platform-release/r-cpu.4-1 --container-tag=latest --machine-type=n1-standard-4 --location=us-central1-b --project=${{ secrets.GCLOUD_PROJECT_ID }}
           sleep 120
+          echo "::set-output name=INSTANCE_NAME::$INSTANCE_NAME"
           
       - name: Build the book
         run: |
           tar -czf source.tar.gz *
-          gcloud compute scp --zone=us-central1-b --project=$GCLOUD_PROJECT source.tar.gz $INSTANCE_NAME:~/ 
+          gcloud compute scp --zone=us-central1-b --project=${{ secrets.GCLOUD_PROJECT_ID }} source.tar.gz ${{ steps.instance.outputs.INSTANCE_NAME }}:~/ 
 
           read -r -d '' BUILD <<EOF
           docker cp source.tar.gz payload-container:/home/jupyter/
@@ -110,11 +111,11 @@ jobs:
           docker exec payload-container bash -c "cd /home/jupyter/source && pip3 install -r requirements.txt && jupyter-book build ."
           EOF
 
-          gcloud compute ssh $INSTANCE_NAME --project=$GCLOUD_PROJECT --zone=us-central1-b --command="${BUILD}"
+          gcloud compute ssh ${{ steps.instance.outputs.INSTANCE_NAME }} --project=${{ secrets.GCLOUD_PROJECT_ID }} --zone=us-central1-b --command="${BUILD}"
       
       - name: Stop workbench instance
         run: |
-         gcloud notebooks instances stop $INSTANCE_NAME --project=$GCLOUD_PROJECT --location=us-central1-b
+         gcloud notebooks instances stop ${{ steps.instance.outputs.INSTANCE_NAME }} --project=${{ secrets.GCLOUD_PROJECT_ID }} --location=us-central1-b
 
           
       
