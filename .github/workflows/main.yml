@@ -100,7 +100,7 @@ jobs:
           gcloud compute ssh ${{ steps.instance.outputs.INSTANCE_NAME }} --project=${{ secrets.GCLOUD_PROJECT_ID }} --zone=us-central1-b --command="$BUILD"
       
       - name: Stop workbench instance
-        if: success() || failure()
+        if: always()
         run: |
          gcloud notebooks instances stop ${{ steps.instance.outputs.INSTANCE_NAME }} --project=${{ secrets.GCLOUD_PROJECT_ID }} --location=us-central1-b
 
