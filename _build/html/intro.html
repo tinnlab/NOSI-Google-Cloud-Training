@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -131,7 +131,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Module01-Data_Processing.html">
+  <a class="reference internal" href="Module01-GEO_Data_Processing.html">
    GEO data processing
   </a>
  </li>
@@ -149,7 +149,31 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Module02-DE_Analysis.html">
-   Differential Expression Analysis
+   Differential gene expression analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Module 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Module03-Gene_Set_and_Pathway.html">
+   Ontology and Gene Ontology
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Module 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Module04-Pathway_Analysis.html">
+   Pathway Analysis
   </a>
  </li>
 </ul>
@@ -363,14 +387,39 @@ machine with our Github is given in the Getting Started below.</p>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 01</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Module01-Data_Processing.html">GEO data processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Module01-GEO_Data_Processing.html">GEO data processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Module01-Gene_Mapping.html">Gene ID mapping</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 02</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Module02-DE_Analysis.html">Differential Expression Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Module02-DE_Analysis.html">Differential gene expression analysis</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 03</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Module03-Gene_Set_and_Pathway.html">Ontology and Gene Ontology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Module03-Gene_Set_and_Pathway.html#kyoto-encyclopedia-of-genes-and-genomes-kegg">Kyoto Encyclopedia of Genes and Genomes (KEGG)</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 04</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Module04-Pathway_Analysis.html">Pathway Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Module04-Pathway_Analysis.html#inputs">Inputs:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Module04-Pathway_Analysis.html#steps">Steps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Module04-Pathway_Analysis.html#fgsea-using-go">FGSEA Using GO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Module04-Pathway_Analysis.html#one-can-make-an-enrichment-plot-for-a-pathway">One can make an enrichment plot for a pathway:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Module04-Pathway_Analysis.html#or-make-a-table-plot-for-a-bunch-of-selected-pathways">Or make a table plot for a bunch of selected pathways:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Module04-Pathway_Analysis.html#fgsea-using-kegg">FGSEA Using KEGG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Module04-Pathway_Analysis.html#to-load-the-gmt-file-for-enrichment-analysis-we-can-use-gsa-read-gmt-function-available-in-the-gsa-r-package-here-is-the-code-to-install-the-package-and-load-the-gmt-file">To load the GMT file for enrichment analysis, we can use GSA.read.gmt function available in the GSA R package. Here is the code to install the package and load the GMT file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Module04-Pathway_Analysis.html#load-the-gmt-file-from-disk-we-use-invisible-function-to-supress-the-excessive-output-message-from-the-gsa-read-gmt-function">Load the GMT file from disk, we use “invisible” function to supress the excessive output message from the “GSA.read.gmt” function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Module04-Pathway_Analysis.html#view-first-five-pathways-and-related-gene-sets">View first five pathways and related gene sets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Module04-Pathway_Analysis.html#view-the-name-of-the-pathways">View the name of the pathways</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Module04-Pathway_Analysis.html#view-the-description-of-each-pathway">View the description of each pathway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Module04-Pathway_Analysis.html#get-p-value-from-de-results">Get p-value from DE results</a></li>
 </ul>
 </div>
 </section>

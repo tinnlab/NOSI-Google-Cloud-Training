@@ -1,0 +1,51 @@
+Traceback (most recent call last):
+  File "C:\Users\augus\anaconda3\envs\NOSI\lib\site-packages\jupyter_cache\executors\utils.py", line 51, in single_nb_execution
+    executenb(
+  File "C:\Users\augus\anaconda3\envs\NOSI\lib\site-packages\nbclient\client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\augus\anaconda3\envs\NOSI\lib\site-packages\nbclient\util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "C:\Users\augus\anaconda3\envs\NOSI\lib\site-packages\nbclient\util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "C:\Users\augus\anaconda3\envs\NOSI\lib\asyncio\base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "C:\Users\augus\anaconda3\envs\NOSI\lib\site-packages\nbclient\client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\augus\anaconda3\envs\NOSI\lib\site-packages\nbclient\client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\augus\anaconda3\envs\NOSI\lib\site-packages\nbclient\client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Gene set and pathway
+
+![](./images/Module3/Workflow3.jpg)
+
+Differential expression (DE) analysis typically yields a list of genes or proteins that require further interpretation.
+Our intention is to use such lists to gain novel insights about genes and proteins that may have roles in a given
+phenomenon, phenotype or disease progression. However, in many cases, gene lists generated from DE analysis are
+difficult to interpret due to their large size and lack of useful annotations. Hence, pathway analysis (also known
+as gene set analysis or over-representation analysis), aims to reduce the complexity of interpreting gene lists
+via mapping the listed genes to known (i.e. annotated) biological pathways, processes and functions.
+This learning module introduces common curated biological databases including Gene Ontology (GO),
+Kyoto Encyclopedia of Genes and Genomes (KEGG).
+
+## Learning Objectives:
+1. Introduction to Ontology and Gene Ontology.
+2. Introduction to KEGG Pathway Database.
+3. Downloading terms, pathway gene set from GO and KEGG.
+4. Saving results to GMT file format.
+------------------
+
+Error in parse(text = x, srcfile = src): <text>:3:2: unexpected '['
+2: 
+3: ![
+    ^
+Traceback:
+
+ERROR: Error in parse(text = x, srcfile = src): <text>:3:2: unexpected '['
+2: 
+3: ![
+    ^
+
+

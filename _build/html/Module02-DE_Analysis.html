@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Differential Expression Analysis &#8212; Consensus Pathway Analysis using Google Cloud Infrastructure</title>
+    <title>Differential gene expression analysis &#8212; Consensus Pathway Analysis using Google Cloud Infrastructure</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -50,9 +50,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Gene mapping" href="Module01-Gene_Mapping.html" />
+    <link rel="next" title="Gene set and pathway" href="Module03-Gene_Set_and_Pathway.html" />
+    <link rel="prev" title="Gene ID mapping" href="Module01-Gene_Mapping.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -131,13 +134,13 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Module01-Data_Processing.html">
-   GEO Data processing
+  <a class="reference internal" href="Module01-GEO_Data_Processing.html">
+   GEO data processing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Module01-Gene_Mapping.html">
-   Gene mapping
+   Gene ID mapping
   </a>
  </li>
 </ul>
@@ -149,7 +152,31 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Differential Expression Analysis
+   Differential gene expression analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Module 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Module03-Gene_Set_and_Pathway.html">
+   Gene set and pathway
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Module 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Module04-Pathway_Analysis.html">
+   Pathway Analysis
   </a>
  </li>
 </ul>
@@ -368,6 +395,26 @@ title="Print to PDF"
    Grouping samples and setting up the design matrix.
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#de-analysis-using-limma">
+   DE analysis using limma.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#de-analysis-using-t-test">
+   DE analysis using t-test
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#de-analysis-using-edger">
+   DE analysis using edgeR
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualization-of-of-differential-expression-results">
+   Visualization of of differential expression results.
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -377,7 +424,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Differential Expression Analysis</h1>
+                <h1>Differential gene expression analysis</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -397,6 +444,26 @@ title="Print to PDF"
    Grouping samples and setting up the design matrix.
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#de-analysis-using-limma">
+   DE analysis using limma.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#de-analysis-using-t-test">
+   DE analysis using t-test
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#de-analysis-using-edger">
+   DE analysis using edgeR
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualization-of-of-differential-expression-results">
+   Visualization of of differential expression results.
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -407,175 +474,514 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="differential-expression-analysis">
-<h1>Differential Expression Analysis<a class="headerlink" href="#differential-expression-analysis" title="Permalink to this headline">#</a></h1>
-<p><img alt="" src="_images/DE_Analysis.png" /></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="differential-gene-expression-analysis">
+<h1>Differential gene expression analysis<a class="headerlink" href="#differential-gene-expression-analysis" title="Permalink to this headline">#</a></h1>
+<p><img alt="" src="_images/DE_pipeline.jpg" /></p>
+<p>The next step in the pathway analysis workflow is the differential expression (DE)  analysis. The goal of DE testing is to determine which genes are expressed at different levels between two or more biological conditions. These genes can offer biological insight into the processes affected by the condition(s) of interest. DE analysis means taking the normalised read count data and performing statistical analysis to discover quantitative changes in expression levels between experimental groups. For example, we use statistical testing to decide whether, for a given gene, an observed difference in read counts is significant, that is, whether it is greater than what would be expected just due to natural random variation. This learning module demonstrates a computational workflow for the detection of DE genes from RNA-Seq data.</p>
 <section id="learning-objectives">
 <h2>Learning Objectives:<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">#</a></h2>
 <ol class="simple">
-<li><p>Assigning samples to groups and set up adesign matrix.</p></li>
-<li><p>Performing differential expression (DE) analysis using <code class="docutils literal notranslate"><span class="pre">limma</span></code> R package.</p></li>
-<li><p>Further processing and visualisation of DE results.</p></li>
+<li><p>Assigning samples into groups and set up design matrix.</p></li>
+<li><p>Performing differential expression (DE) analysis using <code class="docutils literal notranslate"><span class="pre">limma</span></code>, <code class="docutils literal notranslate"><span class="pre">t-test</span></code>, <code class="docutils literal notranslate"><span class="pre">edgeR</span></code> and <code class="docutils literal notranslate"><span class="pre">DEseq</span></code> R package.</p></li>
 <li><p>Filtering and exporting the results table.</p></li>
 <li><p>Further visualisation</p></li>
 </ol>
 </section>
 <section id="grouping-samples-and-setting-up-the-design-matrix">
 <h2>Grouping samples and setting up the design matrix.<a class="headerlink" href="#grouping-samples-and-setting-up-the-design-matrix" title="Permalink to this headline">#</a></h2>
-<p>In this section we will continue to analyze the <code class="docutils literal notranslate"><span class="pre">GSE48350</span></code> dataset that we have used in the previous chapter. Recall from the <span class="xref myst"><strong>GEO Data processing</strong> </span> section,<code class="docutils literal notranslate"><span class="pre">GSE48350</span></code> contains sequenced data of Human Alzheimer’s
-Disease using microarray sequencing technology collected from 4 brain regions. Here we will create create two groups: <em>“condition”</em> and <em>“control”</em> from the Entorhinal Cortex region.</p>
+<p>In this section we will perform differential expression (DF) analysis to analyze the <code class="docutils literal notranslate"><span class="pre">GSE48350</span></code> dataset that we have used in the previous chapter.
+Recall from the <a class="reference internal" href="Module01-GEO_Data_Processing.html"><span class="doc std std-doc"><strong>GEO Data processing</strong> </span></a> section,<code class="docutils literal notranslate"><span class="pre">GSE48350</span></code> contains
+sequenced data of Human Alzheimer’s Disease using microarray sequencing technology collected from 4 brain regions.
+Here we will create two groups: <em>“condition”</em> and <em>“control”</em> from the Entorhinal Cortex region. First, we need to load necessary R libraries to download the dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;GEOquery&quot;</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="s">&quot;lima&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressMessages</span><span class="p">({</span><span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+    <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">)</span>
+  <span class="nf">suppressWarnings</span><span class="p">(</span><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;GEOquery&quot;</span><span class="p">,</span> <span class="n">update</span> <span class="o">=</span> <span class="bp">T</span><span class="p">))</span>
+  <span class="nf">suppressWarnings</span><span class="p">(</span><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;limma&quot;</span><span class="p">,</span> <span class="n">update</span> <span class="o">=</span> <span class="bp">T</span><span class="p">))</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
+  <span class="nf">library</span><span class="p">(</span><span class="s">&quot;GEOquery&quot;</span><span class="p">)</span>
+  <span class="nf">library</span><span class="p">(</span><span class="s">&quot;limma&quot;</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to the <a class="reference internal" href="Module01-GEO_Data_Processing.html"><span class="doc std std-doc"><strong>GEO Data processing</strong> </span></a> section, we can use <a href="https://bioconductor.org/packages/release/bioc/html/GEOquery.html">GEOquery</a> R package to download GEO data and select samples generated from Affymetrix Human Genome U133 Plus 2.0 Array platform.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load series and platform data from GEO</span>
+<span class="n">gset</span> <span class="o">&lt;-</span> <span class="nf">suppressMessages</span><span class="p">(</span><span class="nf">getGEO</span><span class="p">(</span><span class="s">&quot;GSE48350&quot;</span><span class="p">,</span> <span class="n">GSEMatrix</span> <span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">AnnotGPL</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="c1"># Check how many platform available</span>
+<span class="nf">if </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">gset</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">1</span><span class="p">)</span> <span class="n">idx</span> <span class="o">&lt;-</span> <span class="nf">grep</span><span class="p">(</span><span class="s">&quot;GPL570&quot;</span><span class="p">,</span> <span class="nf">attr</span><span class="p">(</span><span class="n">gset</span><span class="p">,</span> <span class="s">&quot;names&quot;</span><span class="p">))</span> <span class="n">else</span> <span class="n">idx</span> <span class="o">&lt;-</span> <span class="m">1</span>
+<span class="n">gset</span> <span class="o">&lt;-</span> <span class="n">gset</span><span class="p">[[</span><span class="n">idx</span><span class="p">]]</span>
+<span class="c1"># Get expression data matric</span>
+<span class="n">expression_data</span> <span class="o">&lt;-</span> <span class="nf">exprs</span><span class="p">(</span><span class="n">gset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can check for number of samples and genes using this command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;#Genes: &quot;</span><span class="p">,</span><span class="nf">dim</span><span class="p">(</span><span class="n">expression_data</span><span class="p">)[</span><span class="m">1</span><span class="p">],</span><span class="s">&quot; - #Samples: &quot;</span><span class="p">,</span><span class="nf">dim</span><span class="p">(</span><span class="n">expression_data</span><span class="p">)[</span><span class="m">2</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: Biobase
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: BiocGenerics
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: &#39;BiocGenerics&#39;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from &#39;package:stats&#39;:
-
-    IQR, mad, sd, var, xtabs
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from &#39;package:base&#39;:
-
-    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
-    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
-    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
-    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
-    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
-    union, unique, unsplit, which.max, which.min
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Welcome to Bioconductor
-
-    Vignettes contain introductory material; view with
-    &#39;browseVignettes()&#39;. To cite Bioconductor, see
-    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting options(&#39;download.file.method.GEOquery&#39;=&#39;auto&#39;)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting options(&#39;GEOquery.inmemory.gpl&#39;=FALSE)
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;lima&quot;</span><span class="p">):</span> <span class="n">there</span> <span class="ow">is</span> <span class="n">no</span> <span class="n">package</span> <span class="n">called</span> <span class="s1">&#39;lima&#39;</span>
-<span class="ne">Traceback</span>:
-
-<span class="mi">1</span><span class="o">.</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;lima&quot;</span><span class="p">)</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;#Genes: 54675 - #Samples: 253&quot;
 </pre></div>
 </div>
 </div>
 </div>
+<p>Now we need to select the samples that belong to entorhinal cortex region using following command</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># load series and platform data from GEO</span>
-
-<span class="n">gset</span> <span class="o">&lt;-</span> <span class="nf">getGEO</span><span class="p">(</span><span class="s">&quot;GSE48350&quot;</span><span class="p">,</span> <span class="n">GSEMatrix</span> <span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">AnnotGPL</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="nf">if </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">gset</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">1</span><span class="p">)</span> <span class="n">idx</span> <span class="o">&lt;-</span> <span class="nf">grep</span><span class="p">(</span><span class="s">&quot;GPL570&quot;</span><span class="p">,</span> <span class="nf">attr</span><span class="p">(</span><span class="n">gset</span><span class="p">,</span> <span class="s">&quot;names&quot;</span><span class="p">))</span> <span class="n">else</span> <span class="n">idx</span> <span class="o">&lt;-</span> <span class="m">1</span>
-<span class="n">gset</span> <span class="o">&lt;-</span> <span class="n">gset</span><span class="p">[[</span><span class="n">idx</span><span class="p">]]</span>
-
-<span class="c1"># make proper column names to match toptable </span>
-<span class="nf">fvarLabels</span><span class="p">(</span><span class="n">gset</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">make.names</span><span class="p">(</span><span class="nf">fvarLabels</span><span class="p">(</span><span class="n">gset</span><span class="p">))</span>
-
-<span class="c1"># group membership for all samples</span>
-<span class="n">gsms</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;XXXXXXX0XXX0XXX0XXX0XX0XX0XXX0XXXXXXX0XXX0XXXXX0XX&quot;</span><span class="p">,</span>
-               <span class="s">&quot;X0XXX0XXXXX0X0XXX0XXX0XXX0XXXXX0XXX0XXXX0XX0XXXXX0&quot;</span><span class="p">,</span>
-               <span class="s">&quot;XXX0XXX0XXX0XXXXX0XXX0XXX0XXX0XX0XXX0XXX0XXX0XXX0X&quot;</span><span class="p">,</span>
-               <span class="s">&quot;XX0XXX0XXX0XXX0XX0XXXXX111111111111111XXXXXXXXXXXX&quot;</span><span class="p">,</span>
-               <span class="s">&quot;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&quot;</span><span class="p">,</span>
-               <span class="s">&quot;XXX&quot;</span><span class="p">)</span>
-<span class="n">sml</span> <span class="o">&lt;-</span> <span class="nf">strsplit</span><span class="p">(</span><span class="n">gsms</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
-
-<span class="c1"># filter out excluded samples (marked as &quot;X&quot;)</span>
-<span class="n">sel</span> <span class="o">&lt;-</span> <span class="nf">which</span><span class="p">(</span><span class="n">sml</span> <span class="o">!=</span> <span class="s">&quot;X&quot;</span><span class="p">)</span>
-<span class="n">sml</span> <span class="o">&lt;-</span> <span class="n">sml</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span>
-<span class="n">gset</span> <span class="o">&lt;-</span> <span class="n">gset</span><span class="p">[</span> <span class="p">,</span><span class="n">sel</span><span class="p">]</span>
-
-<span class="c1"># log2 transformation</span>
-<span class="n">ex</span> <span class="o">&lt;-</span> <span class="nf">exprs</span><span class="p">(</span><span class="n">gset</span><span class="p">)</span>
-<span class="n">qx</span> <span class="o">&lt;-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="nf">quantile</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="n">.</span><span class="p">,</span> <span class="m">0.25</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0.75</span><span class="p">,</span> <span class="m">0.99</span><span class="p">,</span> <span class="m">1.0</span><span class="p">),</span> <span class="n">na.rm</span><span class="o">=</span><span class="bp">T</span><span class="p">))</span>
-<span class="n">LogC</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">qx</span><span class="p">[</span><span class="m">5</span><span class="p">]</span> <span class="o">&gt;</span> <span class="m">100</span><span class="p">)</span> <span class="o">||</span>
-  <span class="p">(</span><span class="n">qx</span><span class="p">[</span><span class="m">6</span><span class="p">]</span><span class="o">-</span><span class="n">qx</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="m">50</span> <span class="o">&amp;&amp;</span> <span class="n">qx</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span>
-<span class="nf">if </span><span class="p">(</span><span class="n">LogC</span><span class="p">)</span> <span class="p">{</span> <span class="n">ex</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">ex</span> <span class="o">&lt;=</span> <span class="m">0</span><span class="p">)]</span> <span class="o">&lt;-</span> <span class="kc">NaN</span>
-<span class="nf">exprs</span><span class="p">(</span><span class="n">gset</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">log2</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span> <span class="p">}</span>
-
-<span class="c1"># assign samples to groups and set up design matrix</span>
-<span class="n">gs</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span><span class="n">sml</span><span class="p">)</span>
-<span class="n">groups</span> <span class="o">&lt;-</span> <span class="nf">make.names</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span><span class="s">&quot;d&quot;</span><span class="p">))</span>
-<span class="nf">levels</span><span class="p">(</span><span class="n">gs</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">groups</span>
-<span class="n">gset</span><span class="o">$</span><span class="n">group</span> <span class="o">&lt;-</span> <span class="n">gs</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get samples information</span>
+<span class="n">samples</span> <span class="o">&lt;-</span> <span class="nf">pData</span><span class="p">(</span><span class="n">gset</span><span class="p">)</span>
+<span class="c1"># Select sample from Entorhinal Cortex region</span>
+<span class="n">idx</span> <span class="o">&lt;-</span> <span class="nf">grep</span><span class="p">(</span><span class="s">&quot;entorhinal&quot;</span><span class="p">,</span> <span class="n">samples</span><span class="o">$</span><span class="n">`brain region:ch1`</span><span class="p">)</span>
+<span class="n">gset</span> <span class="o">=</span> <span class="n">gset</span><span class="p">[</span> <span class="p">,</span><span class="n">idx</span><span class="p">]</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="n">idx</span><span class="p">,]</span>
+<span class="c1"># Get expression data for samples collected from entorhinal cortex region</span>
+<span class="n">expression_data</span> <span class="o">=</span> <span class="n">expression_data</span><span class="p">[,</span><span class="n">idx</span><span class="p">]</span>
+<span class="c1"># Print out new number genes and samples</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;#Genes: &quot;</span><span class="p">,</span><span class="nf">dim</span><span class="p">(</span><span class="n">expression_data</span><span class="p">)[</span><span class="m">1</span><span class="p">],</span><span class="s">&quot; - #Samples: &quot;</span><span class="p">,</span><span class="nf">dim</span><span class="p">(</span><span class="n">expression_data</span><span class="p">)[</span><span class="m">2</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;#Genes: 54675 - #Samples: 54&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that there are 54 samples that were collected from entorhinal cortex region. Next, we need to perform a <span class="math notranslate nohighlight">\(log_2\)</span> transformation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate quantile values from the data</span>
+<span class="n">qx</span> <span class="o">&lt;-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="nf">quantile</span><span class="p">(</span><span class="n">expression_data</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="n">.</span><span class="p">,</span> <span class="m">0.25</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0.75</span><span class="p">,</span> <span class="m">0.99</span><span class="p">,</span> <span class="m">1.0</span><span class="p">),</span> <span class="n">na.rm</span><span class="o">=</span><span class="bp">T</span><span class="p">))</span>
+<span class="c1"># Perform log2 transformation</span>
+<span class="n">LogC</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">qx</span><span class="p">[</span><span class="m">5</span><span class="p">]</span> <span class="o">&gt;</span> <span class="m">100</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">qx</span><span class="p">[</span><span class="m">6</span><span class="p">]</span><span class="o">-</span><span class="n">qx</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="m">50</span> <span class="o">&amp;&amp;</span> <span class="n">qx</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">LogC</span><span class="p">)</span> <span class="p">{</span> <span class="n">expression_data</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">expression_data</span> <span class="o">&lt;=</span> <span class="m">0</span><span class="p">)]</span> <span class="o">&lt;-</span> <span class="kc">NaN</span>
+<span class="nf">exprs</span><span class="p">(</span><span class="n">gset</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">log2</span><span class="p">(</span><span class="n">expression_data</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to perform DE analysis, we need to group patients into two groups: <em>“condition”</em> and <em>“control”</em>. From the samples source name, patients diagnosed with Alzheimer’s Disease are annotated with ‘AD’. Therefore, any samples that contain string ‘AD’ are labelled by ‘d’ (condition/disease) and the remaining samples are assigned to ‘c’ (control/normal). The code to group the samples is presented below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select diease samples</span>
+<span class="n">disease_idx</span> <span class="o">&lt;-</span> <span class="nf">grep</span><span class="p">(</span><span class="s">&quot;AD&quot;</span><span class="p">,</span> <span class="n">samples</span><span class="o">$</span><span class="n">source_name_ch1</span><span class="p">)</span>
+<span class="c1"># Create a vector to store label</span>
+<span class="n">groups</span> <span class="o">&lt;-</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&quot;X&quot;</span><span class="p">,</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">samples</span><span class="p">))</span>
+<span class="c1"># Annotate a diasease sameples as &quot;d&quot;</span>
+<span class="n">groups</span><span class="p">[</span><span class="n">disease_idx</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;d&quot;</span>
+<span class="c1"># Control samples are labeled as &quot;c&quot;</span>
+<span class="n">groups</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">groups</span><span class="o">!=</span><span class="s">&quot;d&quot;</span><span class="p">)]</span> <span class="o">&lt;-</span> <span class="s">&quot;c&quot;</span>
+<span class="n">groups</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="de-analysis-using-limma">
+<h2>DE analysis using limma.<a class="headerlink" href="#de-analysis-using-limma" title="Permalink to this headline">#</a></h2>
+<p>Now, we need to specify the model to be fitted using <code class="docutils literal notranslate"><span class="pre">limma</span></code>. Linear modelling in <code class="docutils literal notranslate"><span class="pre">limma</span></code> is carried out using the <code class="docutils literal notranslate"><span class="pre">lmFit</span></code> and <code class="docutils literal notranslate"><span class="pre">contrasts.fit</span></code> functions originally written for application to microarrays. The functions can be used for both microarray and RNA-seq data and fit a separate model to the expression values for each gene. Next, empirical Bayes moderation is carried out using <code class="docutils literal notranslate"><span class="pre">eBayes</span></code> function.  Empirical Bayes moderation borrows information across all the genes to obtain more precise estimates of gene-wise variability. The model’s residual variances are plotted against average expression values in the next figure. It can be seen from this plot that the variance is no longer dependent on the mean expression level.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add groups to gset object</span>
+<span class="n">gset</span><span class="o">$</span><span class="n">group</span> <span class="o">&lt;-</span> <span class="n">groups</span>
 <span class="n">design</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span><span class="n">group</span> <span class="o">+</span> <span class="m">0</span><span class="p">,</span> <span class="n">gset</span><span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">design</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">levels</span><span class="p">(</span><span class="n">gs</span><span class="p">)</span>
-
+<span class="nf">colnames</span><span class="p">(</span><span class="n">design</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">levels</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span>
 <span class="n">fit</span> <span class="o">&lt;-</span> <span class="nf">lmFit</span><span class="p">(</span><span class="n">gset</span><span class="p">,</span> <span class="n">design</span><span class="p">)</span>  <span class="c1"># fit linear model</span>
-
 <span class="c1"># set up contrasts of interest and recalculate model coefficients</span>
-<span class="n">cts</span> <span class="o">&lt;-</span> <span class="nf">paste</span><span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="m">1</span><span class="p">],</span> <span class="n">groups</span><span class="p">[</span><span class="m">2</span><span class="p">],</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;-&quot;</span><span class="p">)</span>
+<span class="n">cts</span> <span class="o">&lt;-</span> <span class="nf">paste</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;d&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;-&quot;</span><span class="p">)</span>
 <span class="n">cont.matrix</span> <span class="o">&lt;-</span> <span class="nf">makeContrasts</span><span class="p">(</span><span class="n">contrasts</span><span class="o">=</span><span class="n">cts</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">design</span><span class="p">)</span>
 <span class="n">fit2</span> <span class="o">&lt;-</span> <span class="nf">contrasts.fit</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span> <span class="n">cont.matrix</span><span class="p">)</span>
 
 <span class="c1"># compute statistics and table of top significant genes</span>
 <span class="n">fit2</span> <span class="o">&lt;-</span> <span class="nf">eBayes</span><span class="p">(</span><span class="n">fit2</span><span class="p">,</span> <span class="m">0.01</span><span class="p">)</span>
-<span class="n">tT</span> <span class="o">&lt;-</span> <span class="nf">topTable</span><span class="p">(</span><span class="n">fit2</span><span class="p">,</span> <span class="n">adjust</span><span class="o">=</span><span class="s">&quot;fdr&quot;</span><span class="p">,</span> <span class="n">sort.by</span><span class="o">=</span><span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="m">250</span><span class="p">)</span>
-
-<span class="n">tT</span> <span class="o">&lt;-</span> <span class="nf">subset</span><span class="p">(</span><span class="n">tT</span><span class="p">,</span> <span class="n">select</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;ID&quot;</span><span class="p">,</span><span class="s">&quot;adj.P.Val&quot;</span><span class="p">,</span><span class="s">&quot;P.Value&quot;</span><span class="p">,</span><span class="s">&quot;t&quot;</span><span class="p">,</span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="s">&quot;logFC&quot;</span><span class="p">,</span><span class="s">&quot;Gene.symbol&quot;</span><span class="p">,</span><span class="s">&quot;Gene.title&quot;</span><span class="p">))</span>
-<span class="nf">write.table</span><span class="p">(</span><span class="n">tT</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="nf">stdout</span><span class="p">(),</span> <span class="n">row.names</span><span class="o">=</span><span class="bp">F</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To see the number of significantly up- and down-regulated genes, we can use the code below to generate the summary table.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span> <span class="o">&lt;-</span> <span class="nf">decideTests</span><span class="p">(</span><span class="n">fit2</span><span class="p">,</span><span class="n">p.value</span><span class="o">=</span><span class="m">0.05</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found 1 file(s)
-
-GSE48350_series_matrix.txt.gz
-
-Using locally cached version: C:\Users\bangt\AppData\Local\Temp\RtmpOQuY8S/GSE48350_series_matrix.txt.gz
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         c-d
+Down     293
+NotSig 53893
+Up       489
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="nn">Error</span> in <span class="ni">writeBin(bfr, con = out, size = 1L): &#39;Calloc&#39; could not allocate memory </span><span class="nt">(10000000 of 1 bytes)</span>
-<span class="ne">Traceback</span>:
-
-<span class="mi">1</span><span class="o">.</span> <span class="n">getGEO</span><span class="p">(</span><span class="s2">&quot;GSE48350&quot;</span><span class="p">,</span> <span class="n">GSEMatrix</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">AnnotGPL</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">)</span>
-<span class="mi">2</span><span class="o">.</span> <span class="n">getAndParseGSEMatrices</span><span class="p">(</span><span class="n">GEO</span><span class="p">,</span> <span class="n">destdir</span><span class="p">,</span> <span class="n">AnnotGPL</span> <span class="o">=</span> <span class="n">AnnotGPL</span><span class="p">,</span> <span class="n">getGPL</span> <span class="o">=</span> <span class="n">getGPL</span><span class="p">,</span> 
- <span class="o">.</span>     <span class="n">parseCharacteristics</span> <span class="o">=</span> <span class="n">parseCharacteristics</span><span class="p">)</span>
-<span class="mi">3</span><span class="o">.</span> <span class="n">parseGSEMatrix</span><span class="p">(</span><span class="n">destfile</span><span class="p">,</span> <span class="n">destdir</span> <span class="o">=</span> <span class="n">destdir</span><span class="p">,</span> <span class="n">AnnotGPL</span> <span class="o">=</span> <span class="n">AnnotGPL</span><span class="p">,</span> 
- <span class="o">.</span>     <span class="n">getGPL</span> <span class="o">=</span> <span class="n">getGPL</span><span class="p">)</span>
-<span class="mi">4</span><span class="o">.</span> <span class="n">data</span><span class="o">.</span><span class="n">table</span><span class="p">::</span><span class="n">fread</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-<span class="mi">5</span><span class="o">.</span> <span class="n">R</span><span class="o">.</span><span class="n">utils</span><span class="p">::</span><span class="n">decompressFile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">decompFile</span> <span class="o">&lt;-</span> <span class="n">tempfile</span><span class="p">(</span><span class="n">tmpdir</span> <span class="o">=</span> <span class="n">tmpdir</span><span class="p">),</span> 
- <span class="o">.</span>     <span class="n">ext</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">,</span> <span class="n">FUN</span> <span class="o">=</span> <span class="n">FUN</span><span class="p">,</span> <span class="n">remove</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">)</span>
-<span class="mi">6</span><span class="o">.</span> <span class="n">decompressFile</span><span class="o">.</span><span class="n">default</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">decompFile</span> <span class="o">&lt;-</span> <span class="n">tempfile</span><span class="p">(</span><span class="n">tmpdir</span> <span class="o">=</span> <span class="n">tmpdir</span><span class="p">),</span> 
- <span class="o">.</span>     <span class="n">ext</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">,</span> <span class="n">FUN</span> <span class="o">=</span> <span class="n">FUN</span><span class="p">,</span> <span class="n">remove</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">)</span>
-<span class="mi">7</span><span class="o">.</span> <span class="n">writeBin</span><span class="p">(</span><span class="n">bfr</span><span class="p">,</span> <span class="n">con</span> <span class="o">=</span> <span class="n">out</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">1</span><span class="n">L</span><span class="p">)</span>
+</div>
+</div>
+<p>Here, significance is defined using an adjusted p-value cutoff that is set at 5% by default. For the comparison between expression levels in <em>“condition”</em> (d) and <em>“control”</em> (c), 293 genes are found to be down-regulated and 489 genes are up-regulated. We also can extract a table of the top-ranked genes from a linear model fit using <code class="docutils literal notranslate"><span class="pre">topTable</span></code> function. By default, <code class="docutils literal notranslate"><span class="pre">topTable</span></code> arranges genes from smallest to largest adjusted p-value with associated gene information, log-FC, average log-CPM, moderated t-statistic, raw and adjusted p-value for each gene. The number of top genes displayed can be specified, where <code class="docutils literal notranslate"><span class="pre">number=Inf</span></code> includes all genes. In the following code, we will select top 1,000 genes are differentially expressed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">top_genes</span> <span class="o">&lt;-</span> <span class="nf">topTable</span><span class="p">(</span><span class="n">fit2</span><span class="p">,</span> <span class="n">adjust</span><span class="o">=</span><span class="s">&quot;fdr&quot;</span><span class="p">,</span> <span class="n">sort.by</span><span class="o">=</span><span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="m">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>By default, the <code class="docutils literal notranslate"><span class="pre">topTable</span></code> function generates a dataframe that consists of DE genes, statistic and other features. We do not need all the features to perform pathway and enrichment analyses in the later module. Therefore, we will select a subset of <code class="docutils literal notranslate"><span class="pre">topTable</span></code> output by using the following command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">top_genes</span> <span class="o">&lt;-</span> <span class="nf">subset</span><span class="p">(</span><span class="n">top_genes</span><span class="p">,</span> <span class="n">select</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;ID&quot;</span><span class="p">,</span><span class="s">&quot;Gene.symbol&quot;</span><span class="p">,</span><span class="s">&quot;adj.P.Val&quot;</span><span class="p">,</span><span class="s">&quot;P.Value&quot;</span><span class="p">,</span><span class="s">&quot;t&quot;</span><span class="p">,</span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="s">&quot;logFC&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to perform pathway and enrichment analyses, we only focus on the genes that are statistically significant and the probe IDs that have gene symbols. We can select those genes using the following command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">top_genes</span> <span class="o">&lt;-</span> <span class="n">top_genes</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">top_genes</span><span class="o">$</span><span class="n">adj.P.Val</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">),]</span>
+<span class="n">top_genes</span> <span class="o">&lt;-</span> <span class="n">top_genes</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">top_genes</span><span class="o">$</span><span class="n">Gene.symbol</span><span class="o">!=</span><span class="s">&quot;&quot;</span><span class="p">),]</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">top_genes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 7</caption>
+<thead>
+	<tr><th></th><th scope=col>ID</th><th scope=col>Gene.symbol</th><th scope=col>adj.P.Val</th><th scope=col>P.Value</th><th scope=col>t</th><th scope=col>B</th><th scope=col>logFC</th></tr>
+	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>224687_at</th><td>224687_at  </td><td>ANKIB1   </td><td>1.575045e-38</td><td>5.761483e-43</td><td>-42.51195</td><td>71.37488</td><td>-5.0270459</td></tr>
+	<tr><th scope=row>234109_x_at</th><td>234109_x_at</td><td>ONECUT3  </td><td>3.581024e-28</td><td>3.929793e-32</td><td>-26.08643</td><td>56.26670</td><td>-0.5401491</td></tr>
+	<tr><th scope=row>230832_at</th><td>230832_at  </td><td>RTF1     </td><td>5.202052e-28</td><td>6.660149e-32</td><td> 25.81105</td><td>55.88888</td><td> 1.5886452</td></tr>
+	<tr><th scope=row>236977_at</th><td>236977_at  </td><td>LOC646588</td><td>3.302438e-25</td><td>5.436112e-29</td><td> 22.51884</td><td>50.90379</td><td> 1.2085885</td></tr>
+	<tr><th scope=row>211318_s_at</th><td>211318_s_at</td><td>RAE1     </td><td>6.039523e-25</td><td>1.104622e-28</td><td> 22.19198</td><td>50.35766</td><td> 2.9567118</td></tr>
+	<tr><th scope=row>219554_at</th><td>219554_at  </td><td>RHCG     </td><td>2.166963e-24</td><td>4.359689e-28</td><td> 21.56994</td><td>49.29043</td><td> 0.9245753</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Now, we can use the following script to save the DE genes list to use in the later modules.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">saveRDS</span><span class="p">(</span><span class="n">top_genes</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s">&quot;./data/DE_genes.rds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="de-analysis-using-t-test">
+<h2>DE analysis using t-test<a class="headerlink" href="#de-analysis-using-t-test" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressMessages</span><span class="p">({</span>
+  <span class="nf">suppressWarnings</span><span class="p">(</span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;matrixTests&quot;</span><span class="p">,</span><span class="n">quiet</span><span class="o">=</span> <span class="bp">T</span><span class="p">))</span>
+<span class="p">})</span>
+<span class="c1"># Load matrixTests package</span>
+<span class="nf">suppressPackageStartupMessages</span><span class="p">({</span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;matrixTests&quot;</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>package &#39;matrixTests&#39; successfully unpacked and MD5 sums checked
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">write.table</span><span class="p">(</span><span class="n">tT</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="nf">stdout</span><span class="p">(),</span> <span class="n">row.names</span><span class="o">=</span><span class="bp">F</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">count</span> <span class="o">&lt;-</span> <span class="n">expression_data</span>
+<span class="n">X</span> <span class="o">&lt;-</span> <span class="n">count</span><span class="p">[,</span><span class="n">groups</span><span class="o">==</span><span class="s">&quot;c&quot;</span><span class="p">]</span>
+<span class="n">Y</span> <span class="o">&lt;-</span> <span class="n">count</span><span class="p">[,</span><span class="n">groups</span><span class="o">==</span><span class="s">&quot;d&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">&lt;-</span> <span class="nf">row_t_equalvar</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">alternative</span> <span class="o">=</span> <span class="s">&quot;two.sided&quot;</span><span class="p">,</span> <span class="n">mu</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">conf.level</span> <span class="o">=</span> <span class="m">0.95</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">&lt;-</span> <span class="n">res</span><span class="p">[</span><span class="nf">order</span><span class="p">(</span><span class="n">res</span><span class="o">$</span><span class="n">pvalue</span><span class="p">),]</span>
+<span class="n">res</span> <span class="o">&lt;-</span> <span class="n">res</span><span class="p">[</span><span class="n">res</span><span class="o">$</span><span class="n">pvalue</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">,]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="de-analysis-using-edger">
+<h2>DE analysis using edgeR<a class="headerlink" href="#de-analysis-using-edger" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressMessages</span><span class="p">({</span> <span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+  <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">)</span>
+  <span class="nf">suppressWarnings</span><span class="p">(</span><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;edgeR&quot;</span><span class="p">,</span> <span class="n">update</span> <span class="o">=</span> <span class="bp">F</span><span class="p">))</span>
+<span class="p">})</span>
+
+<span class="c1"># Load edgeR package</span>
+<span class="nf">suppressPackageStartupMessages</span><span class="p">({</span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;edgeR&quot;</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">count</span> <span class="o">&lt;-</span> <span class="n">expression_data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dge</span> <span class="o">&lt;-</span> <span class="nf">DGEList</span><span class="p">(</span><span class="n">counts</span> <span class="o">=</span> <span class="n">count</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="nf">factor</span><span class="p">(</span><span class="n">gset</span><span class="o">$</span><span class="n">group</span><span class="p">))</span>
+<span class="n">keep</span> <span class="o">&lt;-</span> <span class="nf">filterByExpr</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">dge</span><span class="p">)</span>
+<span class="n">dge</span> <span class="o">&lt;-</span> <span class="n">dge</span><span class="p">[</span><span class="n">keep</span><span class="p">,</span><span class="n">keep.lib.sizes</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">]</span>
+<span class="n">dge</span> <span class="o">&lt;-</span> <span class="nf">calcNormFactors</span><span class="p">(</span><span class="n">object</span> <span class="o">=</span> <span class="n">dge</span><span class="p">)</span>
+<span class="n">dge</span> <span class="o">&lt;-</span> <span class="nf">estimateDisp</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">dge</span><span class="p">)</span>
+<span class="n">et</span> <span class="o">&lt;-</span> <span class="nf">exactTest</span><span class="p">(</span><span class="n">object</span> <span class="o">=</span> <span class="n">dge</span><span class="p">)</span>
+<span class="n">top_degs</span> <span class="o">=</span> <span class="nf">topTags</span><span class="p">(</span><span class="n">object</span> <span class="o">=</span> <span class="n">et</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="s">&quot;Inf&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="ow">is</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="nb">object</span> <span class="s1">&#39;tT&#39;</span> <span class="ow">not</span> <span class="n">found</span>
-<span class="ne">Traceback</span>:
-
-<span class="mi">1</span><span class="o">.</span> <span class="n">write</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">tT</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="n">stdout</span><span class="p">(),</span> <span class="n">row</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="n">F</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="mi">2</span><span class="o">.</span> <span class="ow">is</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using classic mode.
 </pre></div>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">write.csv</span><span class="p">(</span><span class="n">et</span><span class="o">$</span><span class="n">table</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s">&quot;./data/edgeR_Results.csv&quot;</span><span class="p">)</span>
+<span class="nf">saveRDS</span><span class="p">(</span><span class="n">et</span><span class="o">$</span><span class="n">table</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s">&quot;./data/edgeR_Results.rds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="nf">decideTests</span><span class="p">(</span><span class="n">object</span> <span class="o">=</span> <span class="n">et</span><span class="p">,</span> <span class="n">lfc</span> <span class="o">=</span> <span class="m">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       d-c
+Down     0
+NotSig   5
+Up       3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">## DE analysis using DESeq2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressMessages</span><span class="p">({</span> <span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+  <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">)</span>
+  <span class="nf">suppressWarnings</span><span class="p">(</span><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;DESeq2&quot;</span><span class="p">,</span> <span class="n">update</span> <span class="o">=</span> <span class="bp">F</span><span class="p">))</span>
+<span class="p">})</span>
+<span class="nf">suppressPackageStartupMessages</span><span class="p">({</span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;DESeq2&quot;</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">coldata</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span>
+  <span class="n">sample</span> <span class="o">=</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">expression_data</span><span class="p">),</span>
+  <span class="n">condition</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">groups</span><span class="p">),</span>
+  <span class="n">row.names</span> <span class="o">=</span> <span class="s">&quot;sample&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">coldata</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 1</caption>
+<thead>
+	<tr><th></th><th scope=col>condition</th></tr>
+	<tr><th></th><th scope=col>&lt;fct&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>GSM300173</th><td>c</td></tr>
+	<tr><th scope=row>GSM300177</th><td>c</td></tr>
+	<tr><th scope=row>GSM300181</th><td>c</td></tr>
+	<tr><th scope=row>GSM300186</th><td>c</td></tr>
+	<tr><th scope=row>GSM300189</th><td>c</td></tr>
+	<tr><th scope=row>GSM300192</th><td>c</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">range</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>0.01</li><li>1054.465</li></ol>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dds</span> <span class="o">&lt;-</span> <span class="nf">DESeqDataSetFromMatrix</span><span class="p">(</span><span class="n">countData</span> <span class="o">=</span> <span class="nf">round</span><span class="p">(</span><span class="n">count</span><span class="p">),</span> <span class="n">colData</span> <span class="o">=</span> <span class="n">coldata</span><span class="p">,</span>
+                              <span class="n">design</span> <span class="o">=</span> <span class="o">~</span> <span class="n">condition</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>converting counts to integer mode
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dds</span> <span class="o">&lt;-</span> <span class="n">dds</span><span class="p">[</span><span class="nf">rowSums</span><span class="p">(</span><span class="nf">counts</span><span class="p">(</span><span class="n">dds</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="m">10</span><span class="p">,]</span>
+<span class="n">dds</span><span class="o">$</span><span class="n">condition</span> <span class="o">&lt;-</span> <span class="nf">relevel</span><span class="p">(</span><span class="n">dds</span><span class="o">$</span><span class="n">condition</span><span class="p">,</span> <span class="n">ref</span> <span class="o">=</span> <span class="s">&quot;c&quot;</span><span class="p">)</span>
+<span class="n">dds</span> <span class="o">&lt;-</span> <span class="nf">DESeq</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+<span class="nf">resultsNames</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">&lt;-</span> <span class="nf">results</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="nf">order</span><span class="p">(</span><span class="n">res</span><span class="o">$</span><span class="n">padj</span><span class="p">),])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>estimating size factors
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>estimating dispersions
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gene-wise dispersion estimates
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mean-dispersion relationship
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-- note: fitType=&#39;parametric&#39;, but the dispersion trend was not well captured by the
+   function: y = a/x + b, and a local regression fit was automatically substituted.
+   specify fitType=&#39;local&#39; or &#39;mean&#39; to avoid this message next time.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>final dispersion estimates
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fitting model and testing
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-- replacing outliers and refitting for 85 genes
+-- DESeq argument &#39;minReplicatesForReplace&#39; = 7 
+-- original counts are preserved in counts(dds)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>estimating dispersions
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fitting model and testing
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'Intercept'</li><li>'condition_d_vs_c'</li></ol>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="nf">results</span><span class="p">(</span><span class="n">dds</span><span class="p">),</span><span class="n">alpha</span> <span class="o">=</span> <span class="m">0.05</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>out of 50892 with nonzero total read count
+adjusted p-value &lt; 0.05
+LFC &gt; 0 (up)       : 5, 0.0098%
+LFC &lt; 0 (down)     : 1, 0.002%
+outliers [1]       : 0, 0%
+low counts [2]     : 1, 0.002%
+(mean count &lt; 0)
+[1] see &#39;cooksCutoff&#39; argument of ?results
+[2] see &#39;independentFiltering&#39; argument of ?results
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">write.csv</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s">&quot;./data/DESeq2_Results.csv&quot;</span><span class="p">)</span>
+<span class="nf">saveRDS</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s">&quot;./data/DESeq2_Results.rds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualization-of-of-differential-expression-results">
+<h2>Visualization of of differential expression results.<a class="headerlink" href="#visualization-of-of-differential-expression-results" title="Permalink to this headline">#</a></h2>
+<p>To summarise results for all genes visually, mean-difference plots, which display log-FCs from the linear model fit against the average log-CPM values can be generated using the <code class="docutils literal notranslate"><span class="pre">plotMD</span></code> function, with the differentially expressed genes highlighted.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plotMD</span><span class="p">(</span><span class="n">fit2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">dt</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span> <span class="n">main</span><span class="o">=</span><span class="nf">colnames</span><span class="p">(</span><span class="n">fit2</span><span class="p">)[</span><span class="m">1</span><span class="p">],</span>
+       <span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-8</span><span class="p">,</span><span class="m">13</span><span class="p">),</span><span class="n">pch</span><span class="o">=</span><span class="m">20</span><span class="p">,</span> <span class="n">cex</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="m">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Module02-DE_Analysis_48_0.png" src="_images/Module02-DE_Analysis_48_0.png" />
+</div>
+</div>
+<p>Another way to visualize the number of regulated and unregulated genes is to use Venn diagram. The command to generate the diagram is presented below</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># summarize test results as &quot;up&quot;, &quot;down&quot; or &quot;not expressed&quot;</span>
+<span class="n">dT</span> <span class="o">&lt;-</span> <span class="nf">decideTests</span><span class="p">(</span><span class="n">fit2</span><span class="p">,</span> <span class="n">adjust.method</span><span class="o">=</span><span class="s">&quot;fdr&quot;</span><span class="p">,</span> <span class="n">p.value</span><span class="o">=</span><span class="m">0.05</span><span class="p">)</span>
+<span class="c1"># Venn diagram of results</span>
+<span class="nf">vennDiagram</span><span class="p">(</span><span class="n">dT</span><span class="p">,</span> <span class="n">circle.col</span><span class="o">=</span><span class="nf">palette</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Module02-DE_Analysis_50_0.png" src="_images/Module02-DE_Analysis_50_0.png" />
+</div>
+</div>
+<p>We can visualize the adjusted p-value distribution for all gene using histogram plot as follow</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize and quality control test results.</span>
@@ -588,20 +994,7 @@ Using locally cached version: C:\Users\bangt\AppData\Local\Temp\RtmpOQuY8S/GSE48
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Module02-DE_Analysis_5_0.png" src="_images/Module02-DE_Analysis_5_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># summarize test results as &quot;up&quot;, &quot;down&quot; or &quot;not expressed&quot;</span>
-<span class="n">dT</span> <span class="o">&lt;-</span> <span class="nf">decideTests</span><span class="p">(</span><span class="n">fit2</span><span class="p">,</span> <span class="n">adjust.method</span><span class="o">=</span><span class="s">&quot;fdr&quot;</span><span class="p">,</span> <span class="n">p.value</span><span class="o">=</span><span class="m">0.05</span><span class="p">)</span>
-<span class="c1"># Venn diagram of results</span>
-<span class="nf">vennDiagram</span><span class="p">(</span><span class="n">dT</span><span class="p">,</span> <span class="n">circle.col</span><span class="o">=</span><span class="nf">palette</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/Module02-DE_Analysis_6_0.png" src="_images/Module02-DE_Analysis_6_0.png" />
+<img alt="_images/Module02-DE_Analysis_52_0.png" src="_images/Module02-DE_Analysis_52_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -613,7 +1006,7 @@ Using locally cached version: C:\Users\bangt\AppData\Local\Temp\RtmpOQuY8S/GSE48
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Module02-DE_Analysis_7_0.png" src="_images/Module02-DE_Analysis_7_0.png" />
+<img alt="_images/Module02-DE_Analysis_53_0.png" src="_images/Module02-DE_Analysis_53_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -627,52 +1020,8 @@ Using locally cached version: C:\Users\bangt\AppData\Local\Temp\RtmpOQuY8S/GSE48
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">'c-d'</div><img alt="_images/Module02-DE_Analysis_8_1.png" src="_images/Module02-DE_Analysis_8_1.png" />
+<div class="output text_html">'c-d'</div><img alt="_images/Module02-DE_Analysis_54_1.png" src="_images/Module02-DE_Analysis_54_1.png" />
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># MD plot (log fold change vs mean log expression)</span>
-<span class="c1"># highlight statistically significant (p-adj &lt; 0.05) probes</span>
-<span class="nf">plotMD</span><span class="p">(</span><span class="n">fit2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="n">ct</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">dT</span><span class="p">[,</span><span class="n">ct</span><span class="p">],</span> <span class="n">legend</span><span class="o">=</span><span class="bp">F</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="m">20</span><span class="p">,</span> <span class="n">cex</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
-<span class="nf">abline</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="m">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/Module02-DE_Analysis_9_0.png" src="_images/Module02-DE_Analysis_9_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># General expression data analysis</span>
-<span class="n">ex</span> <span class="o">&lt;-</span> <span class="nf">exprs</span><span class="p">(</span><span class="n">gset</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A matrix: 6 × 54 of type dbl</caption>
-<thead>
-	<tr><th></th><th scope=col>GSM300173</th><th scope=col>GSM300177</th><th scope=col>GSM300181</th><th scope=col>GSM300186</th><th scope=col>GSM300189</th><th scope=col>GSM300192</th><th scope=col>GSM300196</th><th scope=col>GSM300204</th><th scope=col>GSM300208</th><th scope=col>GSM300214</th><th scope=col>⋯</th><th scope=col>GSM1176201</th><th scope=col>GSM1176202</th><th scope=col>GSM1176203</th><th scope=col>GSM1176204</th><th scope=col>GSM1176205</th><th scope=col>GSM1176206</th><th scope=col>GSM1176207</th><th scope=col>GSM1176208</th><th scope=col>GSM1176209</th><th scope=col>GSM1176210</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>1007_s_at</th><td>-0.9304071</td><td>-0.31429476</td><td> 0.302564486</td><td> 1.706508981</td><td> 0.44324721</td><td>-0.35662310</td><td>-0.42414478</td><td>-0.68015019</td><td> 0.70561100</td><td> 0.23055657</td><td>⋯</td><td> 0.29735707</td><td> 1.0451786</td><td> 0.35818266</td><td> 0.86631591</td><td>-0.86054531</td><td> 0.73855074</td><td> 0.43443811</td><td> 0.548127436</td><td>-0.2959882</td><td> 0.54792328</td></tr>
-	<tr><th scope=row>1053_at</th><td>-0.1899698</td><td>-0.13598038</td><td>-0.303115126</td><td> 0.003071112</td><td>-0.59434151</td><td>-0.30161908</td><td> 0.04182821</td><td>-0.07260928</td><td>-0.29828630</td><td>-0.29855911</td><td>⋯</td><td>-0.24029072</td><td>-0.1255642</td><td> 0.07094486</td><td>-0.15935824</td><td> 0.07998875</td><td>-0.38857263</td><td>-0.09313018</td><td>-0.029009885</td><td> 0.3229603</td><td>-0.01513872</td></tr>
-	<tr><th scope=row>117_at</th><td>-0.2784191</td><td>-0.34321870</td><td>-0.008780405</td><td>-0.040806964</td><td> 3.44181211</td><td> 0.02899129</td><td> 0.32742570</td><td> 0.04146729</td><td>-0.39414786</td><td>-0.30109524</td><td>⋯</td><td>-0.10819355</td><td> 0.6173384</td><td>-0.09974673</td><td> 0.59459326</td><td> 0.13922468</td><td>-0.04004724</td><td>-0.03073124</td><td> 0.805958790</td><td> 0.3936756</td><td>-0.20228573</td></tr>
-	<tr><th scope=row>121_at</th><td> 0.2035331</td><td> 0.08515227</td><td> 0.027424018</td><td> 0.180686002</td><td> 0.07046586</td><td>-0.11509540</td><td> 0.22434064</td><td> 0.18612576</td><td> 0.01974077</td><td> 0.10861143</td><td>⋯</td><td> 0.01109913</td><td>-0.2074838</td><td>-0.10970414</td><td> 0.41964341</td><td> 0.10523085</td><td>-0.13914736</td><td> 0.02295550</td><td> 0.009695871</td><td> 0.2261897</td><td> 0.14256048</td></tr>
-	<tr><th scope=row>1255_g_at</th><td> 0.5083751</td><td>-0.28938746</td><td> 0.081224535</td><td> 0.063953076</td><td>-0.31641582</td><td> 0.60411337</td><td> 0.25961200</td><td> 0.03355860</td><td>-0.19762676</td><td>-0.28731400</td><td>⋯</td><td> 0.57820991</td><td>-0.2487116</td><td>-0.18000081</td><td> 0.04598304</td><td> 0.07277371</td><td>-0.17741782</td><td> 0.16908992</td><td>-0.080829885</td><td> 3.2641306</td><td> 0.15702094</td></tr>
-	<tr><th scope=row>1294_at</th><td>-0.3542675</td><td> 0.01620918</td><td> 0.065301945</td><td> 0.933474441</td><td>-0.26148660</td><td> 0.01263875</td><td>-0.62108366</td><td>-0.09775381</td><td>-0.40135476</td><td> 0.04252303</td><td>⋯</td><td> 0.45727226</td><td> 1.3568780</td><td>-0.26581161</td><td> 0.71747749</td><td>-0.18435227</td><td>-0.08382117</td><td> 0.23467213</td><td> 0.351081562</td><td> 0.1501239</td><td> 0.51403397</td></tr>
-</tbody>
-</table>
-</div></div>
 </div>
 </section>
 </section>
@@ -708,8 +1057,15 @@ Using locally cached version: C:\Users\bangt\AppData\Local\Temp\RtmpOQuY8S/GSE48
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Gene mapping</p>
+            <p class="prev-next-title">Gene ID mapping</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="Module03-Gene_Set_and_Pathway.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Gene set and pathway</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

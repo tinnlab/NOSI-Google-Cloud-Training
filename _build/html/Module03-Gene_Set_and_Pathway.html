@@ -1,0 +1,1190 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Ontology and Gene Ontology &#8212; Consensus Pathway Analysis using Google Cloud Infrastructure</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Pathway Analysis" href="Module04-Pathway_Analysis.html" />
+    <link rel="prev" title="Differential gene expression analysis" href="Module02-DE_Analysis.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/Cover.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Consensus Pathway Analysis using Google Cloud Infrastructure</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="VertexAI.html">
+   Setting up Google Cloud environment
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Module 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Module01-GEO_Data_Processing.html">
+   GEO data processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Module01-Gene_Mapping.html">
+   Gene ID mapping
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Module 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Module02-DE_Analysis.html">
+   Differential gene expression analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Module 03
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Ontology and Gene Ontology
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Module 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Module04-Pathway_Analysis.html">
+   Pathway Analysis
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/Module03-Gene_Set_and_Pathway.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FModule03-Gene_Set_and_Pathway.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/Module03-Gene_Set_and_Pathway.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Ontology and Gene Ontology
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overview">
+     Overview
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gene-ontology-relationship">
+     Gene ontology relationship
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#go-storage-file-formats">
+     GO storage file formats
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#retrieving-go-terms-from-de-gene-list">
+     Retrieving GO terms from DE gene list
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kyoto-encyclopedia-of-genes-and-genomes-kegg">
+   Kyoto Encyclopedia of Genes and Genomes (KEGG)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Overview
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#retrieving-pathways-from-kegg-databases">
+     Retrieving pathways from KEGG databases
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Ontology and Gene Ontology</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Ontology and Gene Ontology
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overview">
+     Overview
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gene-ontology-relationship">
+     Gene ontology relationship
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#go-storage-file-formats">
+     GO storage file formats
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#retrieving-go-terms-from-de-gene-list">
+     Retrieving GO terms from DE gene list
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kyoto-encyclopedia-of-genes-and-genomes-kegg">
+   Kyoto Encyclopedia of Genes and Genomes (KEGG)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Overview
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#retrieving-pathways-from-kegg-databases">
+     Retrieving pathways from KEGG databases
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gene set and pathway</span>
+
+<span class="o">!</span><span class="p">[](</span><span class="n">.</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">Module3</span><span class="o">/</span><span class="n">Workflow3.jpg</span><span class="p">)</span>
+
+<span class="n">Differential</span> <span class="nf">expression </span><span class="p">(</span><span class="n">DE</span><span class="p">)</span> <span class="n">analysis</span> <span class="n">typically</span> <span class="n">yields</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">genes</span> <span class="n">or</span> <span class="n">proteins</span> <span class="n">that</span> <span class="n">require</span> <span class="n">further</span> <span class="n">interpretation.</span>
+<span class="n">Our</span> <span class="n">intention</span> <span class="n">is</span> <span class="n">to</span> <span class="n">use</span> <span class="n">such</span> <span class="n">lists</span> <span class="n">to</span> <span class="n">gain</span> <span class="n">novel</span> <span class="n">insights</span> <span class="n">about</span> <span class="n">genes</span> <span class="n">and</span> <span class="n">proteins</span> <span class="n">that</span> <span class="n">may</span> <span class="n">have</span> <span class="n">roles</span> <span class="n">in</span> <span class="n">a</span> <span class="n">given</span>
+<span class="n">phenomenon</span><span class="p">,</span> <span class="n">phenotype</span> <span class="n">or</span> <span class="n">disease</span> <span class="n">progression.</span> <span class="n">However</span><span class="p">,</span> <span class="n">in</span> <span class="n">many</span> <span class="n">cases</span><span class="p">,</span> <span class="n">gene</span> <span class="n">lists</span> <span class="n">generated</span> <span class="n">from</span> <span class="n">DE</span> <span class="n">analysis</span> <span class="n">are</span>
+<span class="n">difficult</span> <span class="n">to</span> <span class="n">interpret</span> <span class="n">due</span> <span class="n">to</span> <span class="n">their</span> <span class="n">large</span> <span class="n">size</span> <span class="n">and</span> <span class="n">lack</span> <span class="n">of</span> <span class="n">useful</span> <span class="n">annotations.</span> <span class="n">Hence</span><span class="p">,</span> <span class="n">pathway</span> <span class="nf">analysis </span><span class="p">(</span><span class="n">also</span> <span class="n">known</span>
+<span class="n">as</span> <span class="n">gene</span> <span class="n">set</span> <span class="n">analysis</span> <span class="n">or</span> <span class="n">over</span><span class="o">-</span><span class="n">representation</span> <span class="n">analysis</span><span class="p">),</span> <span class="n">aims</span> <span class="n">to</span> <span class="n">reduce</span> <span class="n">the</span> <span class="n">complexity</span> <span class="n">of</span> <span class="n">interpreting</span> <span class="n">gene</span> <span class="n">lists</span>
+<span class="n">via</span> <span class="n">mapping</span> <span class="n">the</span> <span class="n">listed</span> <span class="n">genes</span> <span class="n">to</span> <span class="nf">known </span><span class="p">(</span><span class="n">i.e.</span> <span class="n">annotated</span><span class="p">)</span> <span class="n">biological</span> <span class="n">pathways</span><span class="p">,</span> <span class="n">processes</span> <span class="n">and</span> <span class="n">functions.</span>
+<span class="n">This</span> <span class="n">learning</span> <span class="n">module</span> <span class="n">introduces</span> <span class="n">common</span> <span class="n">curated</span> <span class="n">biological</span> <span class="n">databases</span> <span class="n">including</span> <span class="n">Gene</span> <span class="nf">Ontology </span><span class="p">(</span><span class="n">GO</span><span class="p">),</span>
+<span class="n">Kyoto</span> <span class="n">Encyclopedia</span> <span class="n">of</span> <span class="n">Genes</span> <span class="n">and</span> <span class="nf">Genomes </span><span class="p">(</span><span class="n">KEGG</span><span class="p">)</span><span class="n">.</span>
+
+<span class="c1">## Learning Objectives:</span>
+<span class="m">1</span><span class="n">.</span> <span class="n">Introduction</span> <span class="n">to</span> <span class="n">Ontology</span> <span class="n">and</span> <span class="n">Gene</span> <span class="n">Ontology.</span>
+<span class="m">2</span><span class="n">.</span> <span class="n">Introduction</span> <span class="n">to</span> <span class="n">KEGG</span> <span class="n">Pathway</span> <span class="n">Database.</span>
+<span class="m">3</span><span class="n">.</span> <span class="n">Downloading</span> <span class="n">terms</span><span class="p">,</span> <span class="n">pathway</span> <span class="n">gene</span> <span class="n">set</span> <span class="n">from</span> <span class="n">GO</span> <span class="n">and</span> <span class="n">KEGG.</span>
+<span class="m">4</span><span class="n">.</span> <span class="n">Saving</span> <span class="n">results</span> <span class="n">to</span> <span class="n">GMT</span> <span class="n">file</span> <span class="n">format.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">parse</span><span class="p">(</span><span class="n">text</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">srcfile</span> <span class="o">=</span> <span class="n">src</span><span class="p">):</span> <span class="o">&lt;</span><span class="n">text</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span> <span class="n">unexpected</span> <span class="s1">&#39;[&#39;</span>
+<span class="mi">2</span><span class="p">:</span> 
+<span class="mi">3</span><span class="p">:</span> <span class="o">![</span>
+    <span class="o">^</span>
+<span class="ne">Traceback</span>:
+</pre></div>
+</div>
+</div>
+</div>
+<section id="ontology-and-gene-ontology">
+<h1>Ontology and Gene Ontology<a class="headerlink" href="#ontology-and-gene-ontology" title="Permalink to this headline">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
+<p>In this section we will learn about the concept of gene ontology in Bioinformatics. Ontology is a specification
+of a conceptualization which is a set of concepts within a domain, defined by a shared vocabulary to
+denote the types and properties of the concepts as well as the relationships between the concepts.
+Ontology plays an important role in the field of bioinformatics. Ontology enable communicate unambiguously e.g.,
+to understand across different groups’ annotations of various genomes. Also, it allows the knowledge to be represented
+in a computable and structured to perform automated analyses by computer programs.</p>
+<p>The Gene Ontology (GO) defines a structured, common, controlled vocabulary to describe attributes of genes and gene products
+across organisms. Collaboration is key to build a consensus vocabulary. But the term gene ontology, or GO, is commonly used
+to refer to both, which is sometimes a source of potential confusion. In order to avoid this, here we will use the term “GO”
+to describe the set of terms and their hierarchical structure and “GO annotations” to describe the set of associations between
+genes and GO terms. The GO is divided into three categories to describe the genes and gene products from three different
+angles: Molecular Function, Biological Process, and Cellular Component.</p>
+<p>The structure of GO can be described in terms of into directed acyclic graphs (DAGs), where each GO term is a node,
+and the relationships between the terms are edges between the nodes. GO is loosely hierarchical, with ‘child’ terms
+being more specialized than their ‘parent’ terms, but unlike a strict hierarchy, a term may have more than one parent
+term (note that the parent/child model does not hold true for all types of relations). The structure of the controlled
+vocabularies are intended to reflect true, biological relationships. In contrast to strict hierarchies, DAGS allow
+multiple relationships between a more granular (child) term and a more general parent term. The relationship between
+terms affects how queries are made. For example,a query for all genes with binding activity would include transcription
+factors as well as genes with other types of binding activity (such as protein binding, ligand binding). The illustration
+of category and structure of GO is shown in the figure below:</p>
+<p><img alt="" src="_images/GO_Structure.jpg" />
+<em>(Source: <a class="reference external" href="https://www.ebi.ac.uk/">https://www.ebi.ac.uk/</a>, <a class="reference external" href="http://geneontology.org/">http://geneontology.org/</a>)</em></p>
+</section>
+<section id="gene-ontology-relationship">
+<h2>Gene ontology relationship<a class="headerlink" href="#gene-ontology-relationship" title="Permalink to this headline">#</a></h2>
+<p>In DAGs graph, <em>terms</em> are represented as <em>nodes</em> and <em>relations</em> (also known as <em>object properties</em>) between the <em>terms</em>
+are <em>edges</em>. There are commonly used relationships in GO such as <em>is a</em> (is a <em>subtype of</em>), <em>part of, has part, regulates,
+negatively regulates and positively regulates</em>. All terms (except from the root terms representing each aspect) have an
+is a sub-class relationship to another terms.</p>
+<p>Examples:</p>
+<div class="admonition-is-a-relation admonition">
+<p class="admonition-title"><em>is a</em> relation</p>
+<p><strong>GO:1904659:glucose transport</strong> <em>is</em> a <strong>GO:0015749:monosaccharide transport</strong>.</p>
+<p>The <em>is a</em> relation forms the basic structure of GO. If we say A <em>is a</em> B, we mean that node A is a subtype of node B</p>
+</div>
+<div class="admonition-is-part-of-relation admonition">
+<p class="admonition-title"><em>is part of</em> relation</p>
+<p><strong>GO:0031966:mitochondrial membrane</strong> <em>is part of</em> <strong>GO:0005740:mitochondrial envelope</strong></p>
+<p>The <em>part of</em> relation is used to represent part-whole relationships. A <em>part of</em> relation would only be added between
+A and B if B is <strong>necessarily</strong> <em>part of</em> A: wherever B exists, it is as <em>part of</em> A, and the presence of the B implies
+the presence of A. However, given the occurrence of A, we cannot say for certain that B exists.</p>
+</div>
+<div class="admonition-regulates-relation admonition">
+<p class="admonition-title"><em>regulates</em> relation</p>
+<p><strong>GO:0098689:latency-replication decision</strong> <em>regulates</em> <strong>GO:0019046:release from viral latency</strong></p>
+<p>A relation that describes case in which one process directly affects the manifestation of another process or quality,
+i.e. the former <em>regulates</em> the latter.</p>
+</div>
+<p>A more specific case with more nodes and edges can be seen at the figure below:
+<br>
+<img alt="" src="_images/GO_Relation.jpg" />
+<em>(Source: <a class="reference external" href="https://advaitabio.com/">https://advaitabio.com/</a>)</em> <br>
+For more technical information about relations and their properties used in GO and other ontologies see the
+<a href="https://obofoundry.org/ontology/ro.html">OBO Relations Ontology (RO)</a></p>
+</section>
+<section id="go-storage-file-formats">
+<h2>GO storage file formats<a class="headerlink" href="#go-storage-file-formats" title="Permalink to this headline">#</a></h2>
+<p>GO terms are updated monthly in the following formats:</p>
+<ul class="simple">
+<li><p>OBO 1.4 files are human-readable (in addition to machine-readable) and can be opened in any text editor.</p></li>
+<li><p>OWL files can be read by <a href="https://protege.stanford.edu/">Protégé</a> text editor.</p></li>
+</ul>
+<p>In this learning module, we will only use “.OBO” to obtain GO terms.The OBO file format is for representing ontologies and controlled vocabularies. The format itself attempts to achieve the following goals:</p>
+<ul class="simple">
+<li><p>Human readability</p></li>
+<li><p>Ease of parsing</p></li>
+<li><p>Extensibility</p></li>
+<li><p>Minimal redundancy</p></li>
+</ul>
+<p>The file structure can is shown in the following figure.</p>
+<p><img alt="" src="_images/OBO_Format.jpg" /></p>
+<p>The OBO file has a header which is an unlabeled section at the beginning of the document. The header ends when the first term is encountered. Next, term is represented in labeled section with the tag <em>[Term]</em>. Under each term, we can find other information such as term ID, official name, category (namcespace), term definition, synonym and relation to other GO term.</p>
+<p>At this step, we still don’t know what genes are related to which GO terms. In order to retrieve custom sets of gene ontology annotations for any list of genes from organisms, NCBI has published a Gene2GO database that obtain GO terms and the entrez gene ids related to those go terms. The database can be retrieve from <a href="https://ftp.ncbi.nih.gov/gene/DATA/gene2go.gz">here</a> text editor. The Gene2GO database can be viewed using text editor, the file structure is presented in the figure below:</p>
+<p><img alt="" src="_images/Gene2GO.jpg" /></p>
+<p>The OBO and Gene2GO databases will be used in combination to obtain GO term and related genes for enrichment analysis.</p>
+</section>
+<section id="retrieving-go-terms-from-de-gene-list">
+<h2>Retrieving GO terms from DE gene list<a class="headerlink" href="#retrieving-go-terms-from-de-gene-list" title="Permalink to this headline">#</a></h2>
+<p>This section focuses on downloading related GO terms based on the DE genelist obtained from the DE analysis in the previous section.
+Here, we will use <code class="docutils literal notranslate"><span class="pre">toGO</span></code> and <code class="docutils literal notranslate"><span class="pre">hgu133plus2.db</span></code> R packages to obtain GO terms. The <code class="docutils literal notranslate"><span class="pre">topGO</span></code> package has built-in functions that use Gene2GO databases to retrieve GO terms from the gene ID give by DE analysis. Since the dataset we used in the Module 02 was generated for human, we will use <code class="docutils literal notranslate"><span class="pre">hgu133plus2.db</span></code> database to map probeID to gene symbols.
+The installation process of two package can be done by the script below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Installation of topGO and hgu133plus2.db package</span>
+<span class="nf">suppressMessages</span><span class="p">({</span><span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+    <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">)</span>
+  <span class="nf">suppressWarnings</span><span class="p">(</span><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;topGO&quot;</span><span class="p">,</span> <span class="n">update</span> <span class="o">=</span> <span class="bp">F</span><span class="p">))</span>
+  <span class="nf">suppressWarnings</span><span class="p">(</span><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;hgu133plus2.db&quot;</span><span class="p">,</span> <span class="n">update</span> <span class="o">=</span> <span class="bp">F</span><span class="p">))</span>
+<span class="p">})</span>
+<span class="c1"># Loading the library</span>
+<span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
+  <span class="nf">library</span><span class="p">(</span><span class="s">&quot;topGO&quot;</span><span class="p">)</span>
+  <span class="nf">library</span><span class="p">(</span><span class="s">&quot;hgu133plus2.db&quot;</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>package &#39;bit&#39; successfully unpacked and MD5 sums checked
+package &#39;cachem&#39; successfully unpacked and MD5 sums checked
+package &#39;bit64&#39; successfully unpacked and MD5 sums checked
+package &#39;blob&#39; successfully unpacked and MD5 sums checked
+package &#39;memoise&#39; successfully unpacked and MD5 sums checked
+package &#39;pkgconfig&#39; successfully unpacked and MD5 sums checked
+package &#39;plogr&#39; successfully unpacked and MD5 sums checked
+package &#39;RSQLite&#39; successfully unpacked and MD5 sums checked
+package &#39;graph&#39; successfully unpacked and MD5 sums checked
+package &#39;Biobase&#39; successfully unpacked and MD5 sums checked
+package &#39;AnnotationDbi&#39; successfully unpacked and MD5 sums checked
+package &#39;SparseM&#39; successfully unpacked and MD5 sums checked
+package &#39;lattice&#39; successfully unpacked and MD5 sums checked
+package &#39;matrixStats&#39; successfully unpacked and MD5 sums checked
+package &#39;DBI&#39; successfully unpacked and MD5 sums checked
+package &#39;topGO&#39; successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\bangt\AppData\Local\Temp\RtmpYvgQrE\downloaded_packages
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>groupGOTerms: 	GOBPTerm, GOMFTerm, GOCCTerm environments built.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Load the DE genelist generated from the DE analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;./data/DE_genes.rds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>By default, the DE analysis performed by <code class="docutils literal notranslate"><span class="pre">limma</span></code> contains multiple features. However, adjusted <em>p-value</em> and gene ID are the most important features for enrichment analysis. We can use the following code to list of gene IDs and their <em>p-value</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get p-value from DE results</span>
+<span class="n">genelist</span> <span class="o">&lt;-</span> <span class="n">data</span><span class="o">$</span><span class="n">adj.P.Val</span>
+<span class="c1"># Assgin gene IDs to associated p-values</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">genelist</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">data</span><span class="o">$</span><span class="n">ID</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After successfully obtaining the genelist, we need to map the gene IDs to the gene symbols using <code class="docutils literal notranslate"><span class="pre">hgu133plus2.db</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Map gene IDs to gene symbols</span>
+<span class="n">gene</span> <span class="o">&lt;-</span> <span class="nf">select</span><span class="p">(</span><span class="n">hgu133plus2.db</span><span class="p">,</span> <span class="nf">names</span><span class="p">(</span><span class="n">genelist</span><span class="p">),</span> <span class="s">&quot;SYMBOL&quot;</span><span class="p">)</span>
+<span class="c1"># Remove duplicated gene IDs</span>
+<span class="n">gene</span> <span class="o">&lt;-</span> <span class="n">gene</span><span class="p">[</span><span class="o">!</span><span class="nf">duplicated</span><span class="p">(</span><span class="n">gene</span><span class="p">[,</span><span class="m">1</span><span class="p">]),]</span>
+
+<span class="c1"># Assign result to a new genlist with gene symbols</span>
+<span class="n">geneList2</span> <span class="o">&lt;-</span> <span class="n">genelist</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">geneList2</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">gene</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;select()&#39; returned 1:many mapping between keys and columns
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can search for related GO terms based on the new gene list using <code class="docutils literal notranslate"><span class="pre">topGO</span></code> package. First, we need to create a <code class="docutils literal notranslate"><span class="pre">topGOdata</span></code>
+object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">GOdata</span> <span class="o">&lt;-</span> <span class="nf">new</span><span class="p">(</span><span class="s">&quot;topGOdata&quot;</span><span class="p">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span><span class="n">ontology</span> <span class="o">=</span> <span class="s">&quot;BP&quot;</span><span class="p">,</span>
+                    <span class="n">allGenes</span> <span class="o">=</span> <span class="n">geneList2</span><span class="p">,</span> <span class="n">geneSel</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="n">x</span><span class="p">,</span> <span class="n">nodeSize</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span>
+                    <span class="n">annot</span> <span class="o">=</span> <span class="n">annFUN.org</span><span class="p">,</span> <span class="n">ID</span> <span class="o">=</span> <span class="s">&quot;alias&quot;</span><span class="p">,</span> <span class="n">mapping</span> <span class="o">=</span> <span class="s">&quot;org.Hs.eg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Building most specific GOs .....
+
+	( 2203 GO terms found. )
+
+
+Build GO DAG topology ..........
+
+	( 5410 GO terms and 11936 relations. )
+
+
+Annotating nodes ...............
+
+	( 478 genes annotated to the GO terms. )
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can search for related GO terms using <code class="docutils literal notranslate"><span class="pre">geneInTerm</span></code> function and view the term with associated genes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">allGO</span> <span class="o">=</span> <span class="nf">genesInTerm</span><span class="p">(</span><span class="n">GOdata</span><span class="p">)</span>
+<span class="n">allGO</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><dl>
+	<dt>$`GO:0000003`</dt>
+		<dd><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'ALDOA'</li><li>'ALKBH1'</li><li>'ARID5B'</li><li>'ATP2B2'</li><li>'B4GALT1'</li><li>'BRF1'</li><li>'CACNA1H'</li><li>'CCDC40'</li><li>'CCNB1'</li><li>'CCNE1'</li><li>'CD9'</li><li>'CFAP157'</li><li>'CFAP54'</li><li>'CYLC1'</li><li>'EHMT2'</li><li>'ESR1'</li><li>'FAM170A'</li><li>'FKBP6'</li><li>'FOLR2'</li><li>'FUT10'</li><li>'GAMT'</li><li>'HGF'</li><li>'HYAL3'</li><li>'IGFBP7'</li><li>'LY6K'</li><li>'MYCBPAP'</li><li>'OAZ3'</li><li>'OVOL1'</li><li>'PCDH12'</li><li>'QRICH2'</li><li>'SIX5'</li><li>'SLX4'</li><li>'SPATA6L'</li><li>'ST14'</li><li>'STK11'</li><li>'STK35'</li><li>'TAC1'</li><li>'TEKT2'</li><li>'TLE6'</li><li>'TMEM95'</li><li>'TRIM27'</li><li>'YBX2'</li></ol>
+</dd>
+	<dt>$`GO:0000122`</dt>
+		<dd><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'ARID5B'</li><li>'BARX2'</li><li>'CCNE1'</li><li>'CTBP1'</li><li>'CUX2'</li><li>'EHMT2'</li><li>'ESR1'</li><li>'GLIS3'</li><li>'GRIP1'</li><li>'HIF1AN'</li><li>'HOPX'</li><li>'HOXA7'</li><li>'LMO1'</li><li>'NR2F6'</li><li>'OTUD7B'</li><li>'OVOL1'</li><li>'RTF1'</li><li>'RUNX3'</li><li>'SP100'</li><li>'SPDEF'</li><li>'SREBF1'</li><li>'TAF1'</li><li>'TAL1'</li><li>'TGIF2'</li><li>'TLE6'</li><li>'TMPRSS6'</li><li>'TPR'</li><li>'TRIM27'</li><li>'TRIM37'</li><li>'WWC2'</li><li>'WWTR1'</li><li>'ZBTB45'</li><li>'ZC3H8'</li><li>'ZNF345'</li></ol>
+</dd>
+	<dt>$`GO:0000165`</dt>
+		<dd><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'ADRB3'</li><li>'BRF1'</li><li>'CCL22'</li><li>'CLEC7A'</li><li>'COPS5'</li><li>'FGD2'</li><li>'FGF18'</li><li>'FGF4'</li><li>'HGF'</li><li>'LILRA5'</li><li>'MAP4K1'</li><li>'NCF1'</li><li>'NENF'</li><li>'P2RY6'</li><li>'PRDX2'</li><li>'PRMT1'</li><li>'RAP2A'</li><li>'RB1CC1'</li><li>'SERPINF2'</li><li>'SLAMF1'</li><li>'STYX'</li><li>'TEK'</li><li>'TNIP1'</li><li>'WNK2'</li></ol>
+</dd>
+	<dt>$`GO:0000226`</dt>
+		<dd><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'ANKFN1'</li><li>'ARHGEF7'</li><li>'ATF5'</li><li>'CCDC40'</li><li>'CCNB1'</li><li>'CDC14A'</li><li>'CFAP100'</li><li>'CFAP157'</li><li>'CNTROB'</li><li>'DCLK2'</li><li>'DCTN1'</li><li>'DNAAF8'</li><li>'DST'</li><li>'GAS2L2'</li><li>'RAE1'</li><li>'TACC3'</li><li>'TEKT2'</li><li>'TLE6'</li><li>'TPR'</li><li>'TRAF3IP1'</li><li>'TRIM37'</li><li>'TUBB4B'</li><li>'ZMYND10'</li><li>'ZPR1'</li></ol>
+</dd>
+	<dt>$`GO:0000278`</dt>
+		<dd><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'ANKFN1'</li><li>'BRF1'</li><li>'CCNB1'</li><li>'CCNE1'</li><li>'CDC14A'</li><li>'CDC5L'</li><li>'CNTROB'</li><li>'DCTN1'</li><li>'DCTN3'</li><li>'DSCC1'</li><li>'FBXL17'</li><li>'GSPT1'</li><li>'HASPIN'</li><li>'HGF'</li><li>'OVOL1'</li><li>'PBRM1'</li><li>'PML'</li><li>'RAE1'</li><li>'SMC5'</li><li>'SPTBN1'</li><li>'TACC3'</li><li>'TAL1'</li><li>'TPR'</li><li>'TRIAP1'</li><li>'TUBB4B'</li><li>'VCPIP1'</li><li>'ZPR1'</li></ol>
+</dd>
+</dl>
+</div></div>
+</div>
+<p>Now, we already had GO terms with genes. However, we still do not know the meaning of GO terms related to biological process. We can use <code class="docutils literal notranslate"><span class="pre">GO.db</span></code> database to get a set of annotation maps describing the entire Gene Ontology assembled using data from GO. We can use the following code to install the <code class="docutils literal notranslate"><span class="pre">GO.db</span></code> R package.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressMessages</span><span class="p">({</span><span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+    <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">)</span>
+  <span class="nf">suppressWarnings</span><span class="p">(</span><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;GO.db&quot;</span><span class="p">,</span> <span class="n">update</span> <span class="o">=</span> <span class="bp">F</span><span class="p">))</span>
+<span class="p">})</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">GO.db</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, we can use the following command to obtain the GO terms description.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">terms</span> <span class="o">&lt;-</span> <span class="nf">names</span><span class="p">(</span><span class="n">allGO</span><span class="p">)</span>
+<span class="n">descriptions</span> <span class="o">&lt;-</span><span class="nf">lapply</span><span class="p">(</span><span class="nf">Term</span><span class="p">(</span><span class="n">terms</span><span class="p">),</span> <span class="n">`[[`</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">.libPaths</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'C:/Users/bangt/AppData/Local/R/win-library/4.2'</li><li>'C:/Users/bangt/anaconda3/envs/NOSI/Lib/R/library'</li></ol>
+</div></div>
+</div>
+<p>In order to perform enrichment analysis in later module, we need to save the GO terms and genesets to the standard output. One commonly used format is Gene Matrix Transposed file format <em>(*.gmt)</em>. The GMT file format is a tab delimited file format that describes gene sets. In the GMT format, each row represents a gene set; in the GMX format, each column represents a gene set. Here, we can save GO terms and genesets to the <em>*.gmt</em> using the following function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">writeGMT</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">genesets</span><span class="p">,</span> <span class="n">descriptions</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="nf">if </span><span class="p">(</span><span class="nf">file.exists</span><span class="p">(</span><span class="n">outfile</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nf">file.remove</span><span class="p">(</span><span class="n">outfile</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">gs</span> <span class="n">in</span> <span class="nf">names</span><span class="p">(</span><span class="n">genesets</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nf">write</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="nf">gsub</span><span class="p">(</span><span class="s">&quot;\t&quot;</span><span class="p">,</span> <span class="s">&quot; &quot;</span><span class="p">,</span> <span class="n">descriptions</span><span class="p">[[</span><span class="n">gs</span><span class="p">]]),</span> <span class="n">genesets</span><span class="p">[[</span><span class="n">gs</span><span class="p">]]),</span> <span class="n">file</span><span class="o">=</span><span class="n">outfile</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">ncolumns</span><span class="o">=</span><span class="nf">length</span><span class="p">(</span><span class="n">genesets</span><span class="p">[[</span><span class="n">gs</span><span class="p">]])</span> <span class="o">+</span> <span class="m">2</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">outfile</span> <span class="o">&lt;-</span> <span class="s">&quot;./data/GO_terms.gmt&quot;</span>
+<span class="nf">writeGMT</span><span class="p">(</span><span class="n">allGO</span><span class="p">,</span> <span class="n">descriptions</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="kyoto-encyclopedia-of-genes-and-genomes-kegg">
+<h1>Kyoto Encyclopedia of Genes and Genomes (KEGG)<a class="headerlink" href="#kyoto-encyclopedia-of-genes-and-genomes-kegg" title="Permalink to this headline">#</a></h1>
+<section id="id1">
+<h2>Overview<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>KEGG is a collection of databases dealing with genomes, biological pathways, diseases, drugs, and chemical substances. KEGG is utilized for bioinformatics research and education, including data analysis in genomics, metagenomics, metabolomics and other omics studies, modeling and simulation in systems biology, and translational research in drug development. The KEGG database project was initiated in 1995 by Minoru Kanehisa, professor at the Institute for Chemical Research, Kyoto University, under the then ongoing Japanese Human Genome Program. Foreseeing the need for a computerized resource that can be used for biological interpretation of genome sequence data, he started developing the KEGG PATHWAY database. It is a collection of manually drawn KEGG pathway maps representing experimental knowledge on metabolism and various other functions of the cell and the organism. Each pathway map contains a network of molecular interactions and reactions and is designed to link genes in the genome to gene products (mostly proteins) in the pathway. This has enabled the analysis called KEGG pathway mapping, whereby the gene content in the genome is compared with the KEGG PATHWAY database to examine which pathways and associated functions are likely to be encoded in the genome. KEGG is a “computer representation” of the biological system. It integrates building blocks and wiring diagrams of the system—more specifically, genetic building blocks of genes and proteins, chemical building blocks of small molecules and reactions, and wiring diagrams of molecular interaction and reaction networks. The illustrative structure of KEGG is presented as figure below.
+<img alt="" src="_images/KEGG.jpg" /></p>
+</section>
+<section id="retrieving-pathways-from-kegg-databases">
+<h2>Retrieving pathways from KEGG databases<a class="headerlink" href="#retrieving-pathways-from-kegg-databases" title="Permalink to this headline">#</a></h2>
+<p>In this section, we will retrieve pathways and related gensets from the KEGG database using R command line. Here we will use <code class="docutils literal notranslate"><span class="pre">KEGGREST</span></code> R package that provides a client interface to the KEGG REST server. <code class="docutils literal notranslate"><span class="pre">KEGGREST</span></code> can be installed from the Bioconductor using following command.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressMessages</span><span class="p">({</span><span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+    <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">)</span>
+  <span class="nf">suppressWarnings</span><span class="p">(</span><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;KEGGREST&quot;</span><span class="p">,</span> <span class="n">update</span> <span class="o">=</span> <span class="bp">F</span><span class="p">))</span>
+<span class="p">})</span>
+<span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
+  <span class="nf">library</span><span class="p">(</span><span class="n">KEGGREST</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">KEGGREST</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>KEGG exposes a number of databases. To get an idea of what is available, run <code class="docutils literal notranslate"><span class="pre">listDatabases()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">KEGGREST</span><span class="o">::</span><span class="nf">listDatabases</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'pathway'</li><li>'brite'</li><li>'module'</li><li>'ko'</li><li>'genome'</li><li>'vg'</li><li>'ag'</li><li>'compound'</li><li>'glycan'</li><li>'reaction'</li><li>'rclass'</li><li>'enzyme'</li><li>'disease'</li><li>'drug'</li><li>'dgroup'</li><li>'environ'</li><li>'genes'</li><li>'ligand'</li><li>'kegg'</li></ol>
+</div></div>
+</div>
+<p>We can use these databases in further queries. Note that in many cases you can also use a three-letter KEGG organism code or a “T number” (genome identifier) in the same place you would use one of these database names.</p>
+<p>We can obtain the list of organisms available in KEGG with the <code class="docutils literal notranslate"><span class="pre">keggList()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">organism</span> <span class="o">&lt;-</span> <span class="nf">keggList</span><span class="p">(</span><span class="s">&quot;organism&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;KEGG supports &quot;</span><span class="p">,</span><span class="nf">dim</span><span class="p">(</span><span class="n">organism</span><span class="p">)[</span><span class="m">1</span><span class="p">],</span><span class="s">&quot; organisms&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;KEGG supports 8361 organisms&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>To view the supported organism we can use the following command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">organism</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 6 × 4 of type chr</caption>
+<thead>
+	<tr><th scope=col>T.number</th><th scope=col>organism</th><th scope=col>species</th><th scope=col>phylogeny</th></tr>
+</thead>
+<tbody>
+	<tr><td>T01001</td><td>hsa</td><td>Homo sapiens (human)                               </td><td>Eukaryotes;Animals;Vertebrates;Mammals</td></tr>
+	<tr><td>T01005</td><td>ptr</td><td>Pan troglodytes (chimpanzee)                       </td><td>Eukaryotes;Animals;Vertebrates;Mammals</td></tr>
+	<tr><td>T02283</td><td>pps</td><td>Pan paniscus (bonobo)                              </td><td>Eukaryotes;Animals;Vertebrates;Mammals</td></tr>
+	<tr><td>T02442</td><td>ggo</td><td>Gorilla gorilla gorilla (western lowland gorilla)  </td><td>Eukaryotes;Animals;Vertebrates;Mammals</td></tr>
+	<tr><td>T01416</td><td>pon</td><td>Pongo abelii (Sumatran orangutan)                  </td><td>Eukaryotes;Animals;Vertebrates;Mammals</td></tr>
+	<tr><td>T03265</td><td>nle</td><td>Nomascus leucogenys (northern white-cheeked gibbon)</td><td>Eukaryotes;Animals;Vertebrates;Mammals</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>In the Module 02, we performed DE analysis on human dataset. Therefore, we need to download pathways for human, the abbreviation of human pathway in KEGG is <code class="docutils literal notranslate"><span class="pre">hsa</span></code> and we can use <code class="docutils literal notranslate"><span class="pre">keggList</span></code> function to get the pathway list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pathways.list</span> <span class="o">&lt;-</span> <span class="nf">keggList</span><span class="p">(</span><span class="s">&quot;pathway&quot;</span><span class="p">,</span> <span class="s">&quot;hsa&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>path:hsa00010</dt><dd>'Glycolysis / Gluconeogenesis - Homo sapiens (human)'</dd><dt>path:hsa00020</dt><dd>'Citrate cycle (TCA cycle) - Homo sapiens (human)'</dd><dt>path:hsa00030</dt><dd>'Pentose phosphate pathway - Homo sapiens (human)'</dd><dt>path:hsa00040</dt><dd>'Pentose and glucuronate interconversions - Homo sapiens (human)'</dd><dt>path:hsa00051</dt><dd>'Fructose and mannose metabolism - Homo sapiens (human)'</dd></dl>
+</div></div>
+</div>
+<p>The pathway list contains pathway description and pathway code in a single line of text. To see the first five pathways, we can use the following command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pathways.list</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>path:hsa00010</dt><dd>'Glycolysis / Gluconeogenesis - Homo sapiens (human)'</dd><dt>path:hsa00020</dt><dd>'Citrate cycle (TCA cycle) - Homo sapiens (human)'</dd><dt>path:hsa00030</dt><dd>'Pentose phosphate pathway - Homo sapiens (human)'</dd><dt>path:hsa00040</dt><dd>'Pentose and glucuronate interconversions - Homo sapiens (human)'</dd><dt>path:hsa00051</dt><dd>'Fructose and mannose metabolism - Homo sapiens (human)'</dd></dl>
+</div></div>
+</div>
+<p>We can see that, in each line, the text in the quotation mark contain pathway information while the later part cotains pathway code leading by a prefix <code class="docutils literal notranslate"><span class="pre">path:</span></code>. To get  pathway codes from the pathway list, we can use the following command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pathway.codes</span> <span class="o">&lt;-</span> <span class="nf">sub</span><span class="p">(</span><span class="s">&quot;path:&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="nf">names</span><span class="p">(</span><span class="n">pathways.list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use the following command to check how many pathways are available for human</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;Number of available pathways for human are: &quot;</span><span class="p">,</span> <span class="nf">length</span><span class="p">(</span><span class="n">pathway.codes</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Number of available pathways for human are: 347&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following code will help to get list of genes and pathway’s description for all pathways available in human.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">genes.by.pathway</span> <span class="o">&lt;-</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">pathway.codes</span><span class="p">,</span>
+                            <span class="nf">function</span><span class="p">(</span><span class="n">pwid</span><span class="p">){</span>
+                              <span class="n">pw</span> <span class="o">&lt;-</span> <span class="nf">keggGet</span><span class="p">(</span><span class="n">pwid</span><span class="p">)</span>
+                              <span class="nf">if </span><span class="p">(</span><span class="nf">is.null</span><span class="p">(</span><span class="n">pw</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span><span class="o">$</span><span class="n">GENE</span><span class="p">))</span> <span class="nf">return</span><span class="p">(</span><span class="kc">NA</span><span class="p">)</span>
+                              <span class="n">pw2</span> <span class="o">&lt;-</span> <span class="n">pw</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span><span class="o">$</span><span class="n">GENE</span><span class="p">[</span><span class="m">2</span><span class="p">]</span>
+                              <span class="n">pw2</span> <span class="o">&lt;-</span> <span class="nf">unlist</span><span class="p">(</span><span class="nf">lapply</span><span class="p">(</span><span class="nf">strsplit</span><span class="p">(</span><span class="n">pw2</span><span class="p">,</span> <span class="n">split</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="n">fixed</span> <span class="o">=</span> <span class="bp">T</span><span class="p">),</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">]))</span>
+                              <span class="nf">return</span><span class="p">(</span><span class="n">pw2</span><span class="p">)</span>
+                            <span class="p">}</span>
+<span class="p">)</span>
+
+ <span class="n">description.by.pathway</span> <span class="o">&lt;-</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">pathway.codes</span><span class="p">,</span>
+                                  <span class="nf">function</span><span class="p">(</span><span class="n">pwid</span><span class="p">){</span>
+                                    <span class="n">pw</span> <span class="o">&lt;-</span> <span class="nf">keggGet</span><span class="p">(</span><span class="n">pwid</span><span class="p">)</span>
+                                    <span class="nf">if </span><span class="p">(</span><span class="nf">is.null</span><span class="p">(</span><span class="n">pw</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span><span class="o">$</span><span class="n">NAME</span><span class="p">))</span> <span class="nf">return</span><span class="p">(</span><span class="kc">NA</span><span class="p">)</span>
+                                    <span class="n">pw2</span> <span class="o">&lt;-</span> <span class="n">pw</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span><span class="o">$</span><span class="n">NAME</span>
+                                    <span class="nf">return</span><span class="p">(</span><span class="n">pw2</span><span class="p">)</span>
+                                  <span class="p">}</span>
+ <span class="p">)</span>
+ <span class="n">description.by.pathway</span> <span class="o">&lt;-</span> <span class="nf">as.list</span><span class="p">(</span><span class="n">description.by.pathway</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we can save the output to <em>*.gmt</em> file using the following commands</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">outfile</span> <span class="o">&lt;-</span> <span class="s">&quot;./data/KEGG_pathways.gmt&quot;</span>
+<span class="nf">writeGMT</span><span class="p">(</span><span class="n">genes.by.pathway</span><span class="p">,</span> <span class="n">description.by.pathway</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To load the GMT file for enrichment analysis, we can use <code class="docutils literal notranslate"><span class="pre">GSA.read.gmt</span></code> function available in the <code class="docutils literal notranslate"><span class="pre">GSA</span></code> R package. Here is the code to install the package and load the GMT file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressMessages</span><span class="p">({</span>
+  <span class="nf">suppressWarnings</span><span class="p">(</span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;GSA&quot;</span><span class="p">))</span>
+  <span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
+  <span class="nf">suppressWarnings</span><span class="p">(</span><span class="nf">library</span><span class="p">(</span><span class="n">GSA</span><span class="p">))</span>
+<span class="p">})</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the GMT file from disk, we use &quot;invisible&quot; function to supress the excessive</span>
+<span class="c1"># output message from the &quot;GSA.read.gmt&quot; function</span>
+<span class="nf">invisible</span><span class="p">(</span><span class="nf">capture.output</span><span class="p">(</span><span class="n">pathways</span> <span class="o">&lt;-</span> <span class="n">GSA</span><span class="o">::</span><span class="nf">GSA.read.gmt</span><span class="p">(</span><span class="s">&quot;./data/KEGG_pathways.gmt&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># View first five pathways and related gene sets</span>
+<span class="n">pathways</span><span class="o">$</span><span class="n">genesets</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><ol>
+	<li><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'HK3'</li><li>'HK1'</li><li>'HK2'</li><li>'HKDC1'</li><li>'GCK'</li><li>'GPI'</li><li>'PFKM'</li><li>'PFKP'</li><li>'PFKL'</li><li>'FBP1'</li><li>'FBP2'</li><li>'ALDOC'</li><li>'ALDOA'</li><li>'ALDOB'</li><li>'TPI1'</li><li>'GAPDH'</li><li>'GAPDHS'</li><li>'PGK2'</li><li>'PGK1'</li><li>'PGAM1'</li><li>'PGAM2'</li><li>'PGAM4'</li><li>'ENO3'</li><li>'ENO2'</li><li>'ENO1'</li><li>'ENO4'</li><li>'PKM'</li><li>'PKLR'</li><li>'PDHA2'</li><li>'PDHA1'</li><li>'PDHB'</li><li>'DLAT'</li><li>'DLD'</li><li>'LDHAL6A'</li><li>'LDHAL6B'</li><li>'LDHA'</li><li>'LDHB'</li><li>'LDHC'</li><li>'ADH1A'</li><li>'ADH1B'</li><li>'ADH1C'</li><li>'ADH7'</li><li>'ADH4'</li><li>'ADH5'</li><li>'ADH6'</li><li>'AKR1A1'</li><li>'ALDH2'</li><li>'ALDH3A2'</li><li>'ALDH1B1'</li><li>'ALDH7A1'</li><li>'ALDH9A1'</li><li>'ALDH3B1'</li><li>'ALDH3B2'</li><li>'ALDH3A1'</li><li>'ACSS1'</li><li>'ACSS2'</li><li>'GALM'</li><li>'PGM1'</li><li>'PGM2'</li><li>'G6PC1'</li><li>'G6PC2'</li><li>'G6PC3'</li><li>'ADPGK'</li><li>'BPGM'</li><li>'MINPP1'</li><li>'PCK1'</li><li>'PCK2'</li></ol>
+</li>
+	<li><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'CS'</li><li>'ACLY'</li><li>'ACO2'</li><li>'ACO1'</li><li>'IDH1'</li><li>'IDH2'</li><li>'IDH3B'</li><li>'IDH3G'</li><li>'IDH3A'</li><li>'OGDHL'</li><li>'OGDH'</li><li>'DLST'</li><li>'DLD'</li><li>'SUCLG1'</li><li>'SUCLG2'</li><li>'SUCLA2'</li><li>'SDHA'</li><li>'SDHB'</li><li>'SDHC'</li><li>'SDHD'</li><li>'FH'</li><li>'MDH1'</li><li>'MDH2'</li><li>'PC'</li><li>'PCK1'</li><li>'PCK2'</li><li>'PDHA2'</li><li>'PDHA1'</li><li>'PDHB'</li><li>'DLAT'</li></ol>
+</li>
+	<li><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'GPI'</li><li>'G6PD'</li><li>'PGLS'</li><li>'H6PD'</li><li>'PGD'</li><li>'RPE'</li><li>'RPEL1'</li><li>'TKT'</li><li>'TKTL2'</li><li>'TKTL1'</li><li>'TALDO1'</li><li>'RPIA'</li><li>'DERA'</li><li>'RBKS'</li><li>'PGM1'</li><li>'PGM2'</li><li>'PRPS1L1'</li><li>'PRPS2'</li><li>'PRPS1'</li><li>'RGN'</li><li>'IDNK'</li><li>'GLYCTK'</li><li>'ALDOC'</li><li>'ALDOA'</li><li>'ALDOB'</li><li>'FBP1'</li><li>'FBP2'</li><li>'PFKM'</li><li>'PFKP'</li><li>'PFKL'</li></ol>
+</li>
+	<li><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'GUSB'</li><li>'KL'</li><li>'UGT2A1'</li><li>'UGT2A3'</li><li>'UGT2B17'</li><li>'UGT2B11'</li><li>'UGT2B28'</li><li>'UGT1A6'</li><li>'UGT1A4'</li><li>'UGT1A1'</li><li>'UGT1A3'</li><li>'UGT2B10'</li><li>'UGT1A9'</li><li>'UGT2B7'</li><li>'UGT1A10'</li><li>'UGT1A8'</li><li>'UGT1A5'</li><li>'UGT2B15'</li><li>'UGT1A7'</li><li>'UGT2B4'</li><li>'UGT2A2'</li><li>'UGDH'</li><li>'UGP2'</li><li>'AKR1A1'</li><li>'CRYL1'</li><li>'RPE'</li><li>'RPEL1'</li><li>'XYLB'</li><li>'AKR1B1'</li><li>'AKR1B10'</li><li>'DCXR'</li><li>'SORD'</li><li>'DHDH'</li><li>'FGGY'</li><li>'CRPPA'</li></ol>
+</li>
+	<li><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'MPI'</li><li>'PMM2'</li><li>'PMM1'</li><li>'GMPPB'</li><li>'GMPPA'</li><li>'GMDS'</li><li>'GFUS'</li><li>'FPGT'</li><li>'FCSK'</li><li>'ENOSF1'</li><li>'HK3'</li><li>'HK1'</li><li>'HK2'</li><li>'HKDC1'</li><li>'PFKM'</li><li>'PFKP'</li><li>'PFKL'</li><li>'FBP1'</li><li>'FBP2'</li><li>'PFKFB1'</li><li>'PFKFB2'</li><li>'PFKFB3'</li><li>'PFKFB4'</li><li>'TIGAR'</li><li>'KHK'</li><li>'SORD'</li><li>'AKR1B1'</li><li>'AKR1B10'</li><li>'ALDOC'</li><li>'ALDOA'</li><li>'ALDOB'</li><li>'TPI1'</li><li>'TKFC'</li></ol>
+</li>
+</ol>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># View the name of the pathways</span>
+<span class="n">pathways</span><span class="o">$</span><span class="n">geneset.names</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'hsa00010'</li><li>'hsa00020'</li><li>'hsa00030'</li><li>'hsa00040'</li><li>'hsa00051'</li></ol>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># View the description of each pathway</span>
+<span class="n">pathways</span><span class="o">$</span><span class="n">geneset.descriptions</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'Glycolysis / Gluconeogenesis - Homo sapiens (human)'</li><li>'Citrate cycle (TCA cycle) - Homo sapiens (human)'</li><li>'Pentose phosphate pathway - Homo sapiens (human)'</li><li>'Pentose and glucuronate interconversions - Homo sapiens (human)'</li><li>'Fructose and mannose metabolism - Homo sapiens (human)'</li></ol>
+</div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Module02-DE_Analysis.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Differential gene expression analysis</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Module04-Pathway_Analysis.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Pathway Analysis</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Bang Tran, Hung Nguyen, and Tin Nguyen<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

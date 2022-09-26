@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Differential Expression Analysis" href="Module02-DE_Analysis.html" />
-    <link rel="prev" title="GEO data processing" href="Module01-Data_Processing.html" />
+    <link rel="next" title="Differential gene expression analysis" href="Module02-DE_Analysis.html" />
+    <link rel="prev" title="GEO data processing" href="Module01-GEO_Data_Processing.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -132,7 +132,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Module01-Data_Processing.html">
+  <a class="reference internal" href="Module01-GEO_Data_Processing.html">
    GEO data processing
   </a>
  </li>
@@ -150,7 +150,31 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Module02-DE_Analysis.html">
-   Differential Expression Analysis
+   Differential gene expression analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Module 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Module03-Gene_Set_and_Pathway.html">
+   Gene set and pathway
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Module 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Module04-Pathway_Analysis.html">
+   Pathway Analysis
   </a>
  </li>
 </ul>
@@ -370,8 +394,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mapping-of-various-protein-gene-ids-into-gene-identifiers-and-symbols">
-     Mapping of various protein/gene IDs into gene identifiers and symbols.
+    <a class="reference internal nav-link" href="#mapping-probe-ids-into-gene-identifiers-and-symbols">
+     Mapping probe IDs into gene identifiers and symbols.
     </a>
    </li>
   </ul>
@@ -406,8 +430,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mapping-of-various-protein-gene-ids-into-gene-identifiers-and-symbols">
-     Mapping of various protein/gene IDs into gene identifiers and symbols.
+    <a class="reference internal nav-link" href="#mapping-probe-ids-into-gene-identifiers-and-symbols">
+     Mapping probe IDs into gene identifiers and symbols.
     </a>
    </li>
   </ul>
@@ -424,46 +448,39 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="gene-id-mapping">
 <h1>Gene ID mapping<a class="headerlink" href="#gene-id-mapping" title="Permalink to this headline">#</a></h1>
-<p><img alt="" src="_images/Gene_ID_Conversion.png" />
-<em>(Source: <a class="reference external" href="http://david.ncifcrf.gov">david.ncifcrf.gov</a>)</em></p>
+<p><img alt="" src="_images/Gene_ID_Conversion.jpg" /></p>
 <section id="learning-objectives">
 <h2>Learning Objectives:<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">#</a></h2>
 <ol class="simple">
 <li><p>Understanding different probe set ID.</p></li>
-<li><p>Mapping of various protein/gene IDs into gene identifiers and symbols.</p></li>
+<li><p>Mapping probe IDs into gene identifiers and symbols.</p></li>
 </ol>
 <section id="understanding-different-probe-set-id">
 <h3>Understanding different probe set ID<a class="headerlink" href="#understanding-different-probe-set-id" title="Permalink to this headline">#</a></h3>
-<p>Gene set or pathway analysis requires that gene sets and expression data use the same type of gene ID (Entrez Gene ID, Gene symbol or probe set ID etc). However, this is frequently not true for the data we have. For example, our gene sets mostly use Entrez Gene ID, but microarray datasets are frequently labeled by probe set ID (or RefSeq transcript ID etc). Therefore, we need to convert or map the probe set IDs to Entrez gene ID. Here, we will use <code class="docutils literal notranslate"><span class="pre">GSE48350</span></code> dataset that we have used in the previous section for demonstration of gene ID mapping. In order to know what kind of probe set ID, we need to navigate to GEO record page of <code class="docutils literal notranslate"><span class="pre">GSE48350</span></code>. Under the <code class="docutils literal notranslate"><span class="pre">Platform</span></code> tab, we can find the probe ID information.
+<p>Gene set or pathway analysis requires that gene sets and expression data use the same type of gene ID
+(Entrez Gene ID, Gene symbol or probe set ID etc). However, this is frequently not true for the data we have.
+For example, our gene sets mostly use Entrez Gene ID, but microarray datasets are frequently labeled by probe
+set ID (or RefSeq transcript ID etc). Therefore, we need to convert or map the probe set IDs to Entrez gene ID.
+Here, we will use <code class="docutils literal notranslate"><span class="pre">GSE48350</span></code> dataset that we have used in the previous section for demonstration of gene ID mapping.
+In order to know what kind of probe set ID, we need to navigate to GEO record page of <code class="docutils literal notranslate"><span class="pre">GSE48350</span></code>. Under the <code class="docutils literal notranslate"><span class="pre">Platform</span></code>
+tab, we can find the probe ID information.
 <img alt="probID" src="_images/ProbeID.png" /></p>
-<p>From the record page, we know that the dataset was generated from 1 platform using Affymetrix Human Genome U133 Plus 2.0 Array. To convert or map the probe set IDs to Entrez gene ID, we need to find the corresponding annotation package from <a href="https://bioconductor.org/">Bioconductor</a>. For analyzed data, we need to use the <code class="docutils literal notranslate"><span class="pre">hgu133plus2.db</span></code> database. We can install the package using following R command:</p>
+<p>From the record page, we know that the dataset was generated from 1 platform using Affymetrix Human Genome U133 Plus 2.0 Array.
+To convert or map the probe set IDs to Entrez gene ID, we need to find the corresponding annotation package from
+<a href="https://bioconductor.org/">Bioconductor</a>. For analyzed data, we need to use the <code class="docutils literal notranslate"><span class="pre">hgu133plus2.db</span></code> database.
+We can install the package using following R command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#if (!require(&quot;BiocManager&quot;, quietly = TRUE)</span>
-<span class="c1">#   install.packages(&quot;BiocManager&quot;)</span>
-<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;hgu133plus2.db&quot;</span><span class="p">,</span> <span class="n">update</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;getOption(&quot;repos&quot;)&#39; replaces Bioconductor standard repositories, see
-&#39;?repositories&#39; for details
-
-replacement repositories:
-    CRAN: https://cran.r-project.org
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bioconductor version 3.14 (BiocManager 1.30.16), R 4.1.3 (2022-03-10)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
-&quot;package(s) not installed when version(s) same as current; use `force = TRUE` to
-  re-install: &#39;hgu133plus2.db&#39;&quot;
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressMessages</span><span class="p">({</span><span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+    <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">)</span>
+<span class="nf">suppressWarnings</span><span class="p">(</span><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;hgu133plus2.db&quot;</span><span class="p">,</span> <span class="n">update</span> <span class="o">=</span> <span class="bp">F</span><span class="p">))</span>
+<span class="p">})</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>In the previous section, we have successfully downloaded the dataset <code class="docutils literal notranslate"><span class="pre">GSE48350</span></code> and saved a sub-set of it to the local storage. Now we can load the sample dataset and check for the Probe Set ID names by using the following command.</p>
+<p>In the previous section, we have successfully downloaded the dataset <code class="docutils literal notranslate"><span class="pre">GSE48350</span></code> and saved a sub-set of it to the <code class="docutils literal notranslate"><span class="pre">data</span></code> sub-directory.
+Now we can load the sample dataset and check for the Probe Set ID names by using the following command.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;./data/GSE48350.rds&quot;</span><span class="p">)</span>
@@ -491,82 +508,14 @@ replacement repositories:
 </ul>
 <p>For HG-U133, the <strong>_a</strong> designation was not used; an <strong>_s</strong> probe set on these arrays means the same as an <strong>_a</strong> on any of the HG-U133 arrays.</p>
 </section>
-<section id="mapping-of-various-protein-gene-ids-into-gene-identifiers-and-symbols">
-<h3>Mapping of various protein/gene IDs into gene identifiers and symbols.<a class="headerlink" href="#mapping-of-various-protein-gene-ids-into-gene-identifiers-and-symbols" title="Permalink to this headline">#</a></h3>
-<p>For pathway analysis, Probe set IDs should be mapped to Ensembl ID and SYMBOL. Ensembl ID is a transcript identifier from the ENSEMBL project while SYMBOL is a gene symbol is a short-form abbreviation for a particular gene. We can load the <code class="docutils literal notranslate"><span class="pre">hgu133plus2.db</span></code> database to perform Probe ID mapping using the following command:</p>
+<section id="mapping-probe-ids-into-gene-identifiers-and-symbols">
+<h3>Mapping probe IDs into gene identifiers and symbols.<a class="headerlink" href="#mapping-probe-ids-into-gene-identifiers-and-symbols" title="Permalink to this headline">#</a></h3>
+<p>For pathway analysis, Probe set IDs should be mapped to Ensembl ID and SYMBOL.
+Ensembl ID is a transcript identifier from the ENSEMBL project while SYMBOL is a gene symbol is a short-form abbreviation for a particular gene.
+We can load the <code class="docutils literal notranslate"><span class="pre">hgu133plus2.db</span></code> database to perform Probe ID mapping using the following command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">hgu133plus2.db</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: AnnotationDbi
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: stats4
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: BiocGenerics
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: &#39;BiocGenerics&#39;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from &#39;package:stats&#39;:
-
-    IQR, mad, sd, var, xtabs
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from &#39;package:base&#39;:
-
-    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
-    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
-    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
-    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
-    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
-    union, unique, unsplit, which.max, which.min
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: Biobase
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Welcome to Bioconductor
-
-    Vignettes contain introductory material; view with
-    &#39;browseVignettes()&#39;. To cite Bioconductor, see
-    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: IRanges
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: S4Vectors
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: &#39;S4Vectors&#39;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from &#39;package:base&#39;:
-
-    expand.grid, I, unname
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: &#39;IRanges&#39;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following object is masked from &#39;package:grDevices&#39;:
-
-    windows
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: org.Hs.eg.db
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressMessages</span><span class="p">({</span><span class="nf">library</span><span class="p">(</span><span class="n">hgu133plus2.db</span><span class="p">)})</span>
 </pre></div>
 </div>
 </div>
@@ -574,12 +523,9 @@ replacement repositories:
 <p>Here, we can build a  lookup table that maps the Probe ID to Ensembl ID and gene symbol using the following command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">annotLookup</span> <span class="o">&lt;-</span> <span class="nf">select</span><span class="p">(</span><span class="n">hgu133plus2.db</span><span class="p">,</span> <span class="n">keys</span> <span class="o">=</span> <span class="n">probeIDs</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;PROBEID&#39;</span><span class="p">,</span> <span class="s">&#39;ENSEMBL&#39;</span><span class="p">,</span> <span class="s">&#39;SYMBOL&#39;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;select()&#39; returned 1:many mapping between keys and columns
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressMessages</span><span class="p">({</span>
+<span class="n">annotLookup</span> <span class="o">&lt;-</span> <span class="nf">select</span><span class="p">(</span><span class="n">hgu133plus2.db</span><span class="p">,</span> <span class="n">keys</span> <span class="o">=</span> <span class="n">probeIDs</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;PROBEID&#39;</span><span class="p">,</span> <span class="s">&#39;ENSEMBL&#39;</span><span class="p">,</span> <span class="s">&#39;SYMBOL&#39;</span><span class="p">))</span>
+<span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -619,7 +565,9 @@ replacement repositories:
 </table>
 </div></div>
 </div>
-<p>From the lookup table we can spot that a single Probe ID can be mapped to multiple Ensembl IDs. Depending on analysis performed, users can select their own Ensembl ID of interest. Here is a simple way to replace Probe IDs with gene symbols :</p>
+<p>From the lookup table we can spot that a single Probe ID can be mapped to multiple Ensembl IDs.
+Depending on analysis performed, users can select their own Ensembl ID of interest. Here is a simple way to
+replace Probe IDs with gene symbols :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rownames</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">unique</span><span class="p">(</span><span class="n">annotLookup</span><span class="o">$</span><span class="n">SYMBOL</span><span class="p">)</span>
@@ -641,16 +589,16 @@ replacement repositories:
 	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><th scope=row>DDR1</th><td>-0.17134216</td><td> 0.52157192</td><td> 0.68670355</td><td> 0.81143831</td><td> 0.86451700</td><td> 0.52574016</td><td> 0.66688491</td><td>-0.93040715</td><td>-0.328126840</td><td>-0.74640518</td></tr>
-	<tr><th scope=row>RFC2</th><td>-0.58540894</td><td>-0.17486225</td><td> 0.89458707</td><td> 0.05195171</td><td> 0.50730550</td><td> 0.57049732</td><td> 0.24645953</td><td>-0.18996975</td><td>-0.123880381</td><td> 0.02598866</td></tr>
-	<tr><th scope=row>HSPA6</th><td>-0.21819817</td><td> 0.08682425</td><td> 1.63105514</td><td> 1.16585098</td><td> 2.33922329</td><td> 3.78668177</td><td> 1.14488628</td><td>-0.27841910</td><td> 0.723029702</td><td>-0.46762850</td></tr>
-	<tr><th scope=row>PAX8</th><td>-0.03630468</td><td> 0.07141232</td><td>-0.02578819</td><td> 0.26091293</td><td> 0.05593042</td><td>-0.35576714</td><td> 0.01708155</td><td> 0.20353308</td><td>-0.058768961</td><td>-0.13781851</td></tr>
-	<tr><th scope=row>GUCA1A</th><td>-1.02545683</td><td>-0.89559517</td><td> 1.66886552</td><td> 0.59864181</td><td> 1.12816206</td><td> 1.82441916</td><td> 1.14608539</td><td> 0.50837510</td><td> 2.325217438</td><td> 0.41166042</td></tr>
-	<tr><th scope=row>UBA7</th><td>-0.26114260</td><td>-0.10595602</td><td> 0.60347267</td><td> 0.63885094</td><td> 0.71480600</td><td> 0.03780249</td><td> 1.20230186</td><td>-0.35426747</td><td> 0.007652498</td><td>-0.18228540</td></tr>
-	<tr><th scope=row>THRA</th><td> 0.72345948</td><td> 0.01939904</td><td>-0.78443074</td><td>-0.71589564</td><td>-0.46461587</td><td>-0.98535048</td><td>-0.19650176</td><td> 0.37064082</td><td>-0.316624769</td><td>-0.06715241</td></tr>
-	<tr><th scope=row>PTPN21</th><td>-0.10373373</td><td>-0.38622528</td><td>-1.00999569</td><td>-1.13029217</td><td>-1.37365271</td><td>-1.08647842</td><td>-0.89696490</td><td>-0.39420333</td><td> 0.101918960</td><td>-0.13101714</td></tr>
-	<tr><th scope=row>CCL5</th><td> 0.64007049</td><td>-0.27436622</td><td> 0.80047113</td><td> 0.21786040</td><td>-0.14264812</td><td> 0.11026261</td><td> 1.04344810</td><td> 0.08017696</td><td> 0.202078644</td><td>-0.33860081</td></tr>
-	<tr><th scope=row>CYP2E1</th><td> 0.33714224</td><td>-0.21063832</td><td> 1.45742961</td><td> 0.79207413</td><td> 0.82465805</td><td> 1.01923527</td><td> 0.30999663</td><td>-0.10276091</td><td>-0.122650510</td><td> 0.61440153</td></tr>
+	<tr><th scope=row>DDR1</th><td>0.9168711</td><td>1.2842289</td><td>1.3838295</td><td>1.4620315</td><td>1.4960686</td><td>1.2866872</td><td>1.3716376</td><td>0.6085351</td><td>0.8452452</td><td>0.6745393</td></tr>
+	<tr><th scope=row>RFC2</th><td>0.7367870</td><td>0.9152165</td><td>1.5155498</td><td>1.0262097</td><td>1.2758373</td><td>1.3132664</td><td>1.1284863</td><td>0.9081397</td><td>0.9393891</td><td>1.0130529</td></tr>
+	<tr><th scope=row>HSPA6</th><td>0.8950221</td><td>1.0440652</td><td>2.0347068</td><td>1.6976205</td><td>2.5993895</td><td>3.8876049</td><td>1.6831516</td><td>0.8674964</td><td>1.4063434</td><td>0.7850503</td></tr>
+	<tr><th scope=row>PAX8</th><td>0.9819619</td><td>1.0361480</td><td>0.9871635</td><td>1.1363467</td><td>1.0282362</td><td>0.8330552</td><td>1.0085661</td><td>1.1053528</td><td>0.9709147</td><td>0.9327358</td></tr>
+	<tr><th scope=row>GUCA1A</th><td>0.5765267</td><td>0.6206102</td><td>2.0633803</td><td>1.3301512</td><td>1.6716562</td><td>2.1832146</td><td>1.6839774</td><td>1.2764652</td><td>2.5877041</td><td>1.2204636</td></tr>
+	<tr><th scope=row>UBA7</th><td>0.8753293</td><td>0.9479945</td><td>1.3330627</td><td>1.3545021</td><td>1.4012277</td><td>1.0190251</td><td>1.7229316</td><td>0.8337133</td><td>1.0038313</td><td>0.9117344</td></tr>
+	<tr><th scope=row>THRA</th><td>1.4066110</td><td>1.0097321</td><td>0.6604550</td><td>0.6860092</td><td>0.7863153</td><td>0.5898622</td><td>0.9050921</td><td>1.1971904</td><td>0.8503563</td><td>0.9668145</td></tr>
+	<tr><th scope=row>PTPN21</th><td>0.9490653</td><td>0.8197735</td><td>0.5816383</td><td>0.5428258</td><td>0.4708366</td><td>0.5567084</td><td>0.6201315</td><td>0.8163207</td><td>1.0518593</td><td>0.9359782</td></tr>
+	<tr><th scope=row>CCL5</th><td>1.3552448</td><td>0.8693293</td><td>1.4550548</td><td>1.1130387</td><td>0.9304383</td><td>1.0561844</td><td>1.6140728</td><td>1.0406454</td><td>1.1045746</td><td>0.8406106</td></tr>
+	<tr><th scope=row>CYP2E1</th><td>1.1783971</td><td>0.8985217</td><td>1.9054227</td><td>1.4497262</td><td>1.4704667</td><td>1.5978145</td><td>1.1633086</td><td>0.9495343</td><td>0.9399777</td><td>1.3396635</td></tr>
 </tbody>
 </table>
 </div></div>
@@ -686,7 +634,7 @@ replacement repositories:
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="Module01-Data_Processing.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="Module01-GEO_Data_Processing.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
@@ -696,7 +644,7 @@ replacement repositories:
     <a class='right-next' id="next-link" href="Module02-DE_Analysis.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Differential Expression Analysis</p>
+        <p class="prev-next-title">Differential gene expression analysis</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
