@@ -1,12 +1,13 @@
 # Consensus Pathway Analysis using Google Cloud Infrastructure
 
 
-This cloud-based learning module teaches pathway analyses using omics datasets to discover consistent 
-biological mechanism behind a condition.Pathway analysis refers to a set of widely used tools for research in life sciences 
-intended to give meaning to high-throughput biological data.The main purpose of PA tools is to analyze these data, 
-detecting relevant groups of related genes that are altered in case samples in comparison to a control.
-Pathway analysis approaches use available pathway databases and the given gene expression data to identify the pathways
-which are significantly impacted in a given condition.
+![img.png](img.png)
+
+This cloud-based learning module teaches Pathway Analysis, a term that describes the set of tools and techniques used in
+life sciences research to discover the biological mechanism behind a condition from high throughput biological data. 
+Pathway Analysis tools are primarily used to analyze these omics datasets to detect relevant groups of genes that are 
+altered in case samples when compared to a control group. Pathway Analysis approaches make use of already existing pathway 
+databases and given gene expression data to identify the pathways which are significantly impacted in a given condition.
 
 The course is structured such that the content will be arranged in five sub-modules which allows us to:
 1. Download and process data from public repositories,
@@ -40,32 +41,22 @@ The content of the course is organized in R Jupyter Notebooks. Then we use Jupyt
 individuals Jupyter Notebooks into a web-interface for a better navigation. Details of installing the tools and formatting
 the content can be found at: https://jupyterbook.org/en/stable/intro.html. The content of the course is reposed in the 
 Github repository of Dr. Tin Nguyen's lab, and can be found at https://github.com/tinnlab/NOSI-Google-Cloud-Training.
+The overall idea of the modules are explained below:
 
-Module 1 of the course provides basic knowledge of Data Processing. It walks the student through the process of obtaining data from
-multiple platforms such as public repositories like the Gene Expression Omnibus (GEO), preprocessing and manipulating this 
-data, normalization, loading and saving the Expression matrix. It also explains the concept of Probe Set ID and describes 
++ Module 1 describes how to obtain data from multiple platforms, processing the data and saving the Expression matrix as well as
 how to map probe IDs into gene identifiers and symbols.
++ Module 2 describes the next step in the Pathway Analysis workflow, which is Differential Expression Analysis, which goal
+is to determine which genes are expressed at different levels between two or more biological conditions.
++ Module 3 introduces common curated biological databases such as Gene Ontology (GO), Kyoto Encyclopedia of Genes and 
+Genomes (KEGG), which contain known biological pathways, processes and functions, useful in interpreting gene lists obtained in Module 2.
++ In Module 4, some Enrichment Analysis methods, which help gain insight into obtained gene lists by identifying pathways that 
+are enriched in a gene list more than would be expected by chance are introduced.
++ Meta-analysis methods developed to integrate information among multiple studies, in a bid to understand the underlying
+biological phenomena behind the gene expression changes involved in a comparison of two phenotypes are decribed in Module 5.
 
-Module 2 describes the next step in the Pathway Analysis workflow after data acquisition and preparation, which is 
-Differential Expression Analysis. This is an important process, which goal is to determine which genes are expressed at 
-different levels between two or more biological conditions. 
 
-The results of DE analyses are often gene lists, which are difficult to interpret due to their large size and lack of 
-useful annotations. Hence, Pathway Analysis aims to reduce the complexity of interpreting gene lists via mapping the 
-listed genes to known biological pathways, processes and functions, which are contained in common curated biological 
-databases. Module 3 introduces such databases including Gene Ontology (GO), Kyoto Encyclopedia of Genes and Genomes (KEGG).
 
-In Module 4, some Enrichment Analysis methods, which help gain insight into obtained gene lists by identifying pathways that 
-are enriched in a gene list more than would be expected by chance are introduced. The three major steps involved the process,
-including definition of a gene list from omics data, determination of statistically enriched pathways, and visualization 
-and interpretation of the results are explained. 
 
- Given the importance and applications of Pathway Analysis in physiological and biomedical research, many methods 
- have been developed to identify enriched pathways under different biological states within a genomic study. Also, as more
-and more microarray datasets accumulate, meta-analysis methods have also been developed to integrate information among 
-multiple studies, in a bid to understand the underlying biological phenomena behind the gene expression changes involved
- in a comparison of two phenotypes. Module 5 focuses on these methods and explores methods such as Fisher's and Stouffer's
-methods in detail.
 
 ## **Software Requirements** <a name="SOF"></a>
 
@@ -89,7 +80,6 @@ The logs for each time it builds the book are here: https://github.com/tinnlab/N
 
 ## **Workflow Diagrams** <a name="WORK"></a>
 
-> Explain the cloud architecture/data flow of your workflow here, and include your data flow diagram here.
 
 # <img src="./images/Intro/Main-img.png" width="900" height="700">
 
@@ -103,17 +93,17 @@ It involves assigning samples into groups and setting up design matrix, and then
 edgeR and DESeq packages to produce results which are filtered and exported before being further visualized.
 
 Module 3 introduces Ontology, Gene Ontology and the KEGG Pathway Database. Also, terms and pathway gene sets are downloaded 
-from GO and KEGG and then the results are saved to the GMT file format. In Module 4, some Pathway Analysis methods are introduced, before Meta analysis methods are discussed in Module 5. 
+from GO and KEGG and then the results are saved to the GMT file format. In Module 4, some Pathway Analysis methods are introduced,
+before Meta analysis methods are discussed in Module 5. 
 
 
 ## **Data** <a name="DATA"></a>
-All data from module the was originally downloaded from the Gene Expression Omnibus (GEO) repository using the accession
-number GSE48350 file. The data was originally generated by **Berchtold and Cotman, 2013**. We preprocessed this data and normalized it, 
-after which we used it in the subsequent analyses.
+All data from the modules were originally downloaded from the Gene Expression Omnibus (GEO) repository using the accession
+number GSE48350 file. The data was originally generated by **Berchtold and Cotman, 2013**. We preprocessed this data and
+normalized it, after which we used it in the subsequent analyses.
 
 ## **Troubleshooting** <a name="TR"></a>
 
-Describe common error encountered with your workflow and how to troubleshoot them
 Prior to publishing, some common errors frequently encountered by the early users in the workflow include syntax errors
 such as calling a library that has not been initialized.
 Also, some users who were still beginners to Bioinformatics made basic errors such as confusing the meanings of terms such as 
