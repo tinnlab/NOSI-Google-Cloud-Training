@@ -1,8 +1,6 @@
 # Consensus Pathway Analysis using Google Cloud Infrastructure
 
 
-![img.png](img.png)
-
 This cloud-based learning module teaches Pathway Analysis, a term that describes the set of tools and techniques used in
 life sciences research to discover the biological mechanism behind a condition from high throughput biological data. 
 Pathway Analysis tools are primarily used to analyze these omics datasets to detect relevant groups of genes that are 
@@ -43,16 +41,16 @@ the content can be found at: https://jupyterbook.org/en/stable/intro.html. The c
 Github repository of Dr. Tin Nguyen's lab, and can be found at https://github.com/tinnlab/NOSI-Google-Cloud-Training.
 The overall idea of the modules are explained below:
 
-+ Module 1 describes how to obtain data from multiple platforms, processing the data and saving the Expression matrix as well as
-how to map probe IDs into gene identifiers and symbols.
-+ Module 2 describes the next step in the Pathway Analysis workflow, which is Differential Expression Analysis, which goal
++ Module01-GEO_Data_Processing describes how to obtain data from multiple platforms, processing the data and saving the Expression matrix
++ Module01-Gene_Mapping explains how to map probe IDs into gene identifiers and symbols.
++ Module02-DE_Analysis describes the Differential Expression Analysis step, which goal
 is to determine which genes are expressed at different levels between two or more biological conditions.
-+ Module 3 introduces common curated biological databases such as Gene Ontology (GO), Kyoto Encyclopedia of Genes and 
++ Module03-Gene_Set_and_Pathway introduces common curated biological databases such as Gene Ontology (GO), Kyoto Encyclopedia of Genes and 
 Genomes (KEGG), which contain known biological pathways, processes and functions, useful in interpreting gene lists obtained in Module 2.
-+ In Module 4, some Enrichment Analysis methods, which help gain insight into obtained gene lists by identifying pathways that 
++ In Module04-Pathway_Analysis, some Enrichment Analysis methods, which help gain insight into obtained gene lists by identifying pathways that 
 are enriched in a gene list more than would be expected by chance are introduced.
 + Meta-analysis methods developed to integrate information among multiple studies, in a bid to understand the underlying
-biological phenomena behind the gene expression changes involved in a comparison of two phenotypes are decribed in Module 5.
+biological phenomena behind the gene expression changes involved in a comparison of two phenotypes are described in Module 5.
 
 
 
