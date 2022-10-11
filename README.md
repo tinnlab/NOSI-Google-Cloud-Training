@@ -1,8 +1,5 @@
 # Consensus Pathway Analysis using Google Cloud Infrastructure
 
-
-![img.png](img.png)
-
 This cloud-based learning module teaches Pathway Analysis, a term that describes the set of tools and techniques used in
 life sciences research to discover the biological mechanism behind a condition from high throughput biological data. 
 Pathway Analysis tools are primarily used to analyze these omics datasets to detect relevant groups of genes that are 
