@@ -20,8 +20,12 @@ pathways and genes.
 
 + [Getting Started](#GS)
 + [Overview](#OV)
++ [Workflow Diagrams](#WORK)
 + [Software Requirements](#SOF)
-
++ [Data](#DATA)
++ [TroubleShooting](#TR)
++ [Funding](#FUND)
++ [License](#LIC)
 
 
 ## <a name="GS">Getting Started</a>
@@ -39,16 +43,35 @@ the content can be found at: https://jupyterbook.org/en/stable/intro.html. The c
 Github repository of Dr. Tin Nguyen's lab, and can be found at https://github.com/tinnlab/NOSI-Google-Cloud-Training.
 The overall idea of the modules are explained below:
 
-+ Module 1 has two sub-modules. The first sub-module [**GEO data processing ** ](./Module01-GEO_Data_Processing.ipynb)
++ Module 1 has two sub-modules. The first sub-module [**GEO data processing**](./Module01-GEO_Data_Processing.ipynb)
 describes how to obtain data from public repository, process and save the expression matrix while the second sub-module 
-[**Gen Mapping ** ](./Module01-Gene_Mapping.ipynb) shows how to map probe IDs into gene symbols.
+[**Gene Mapping**](./Module01-Gene_Mapping.ipynb) shows how to map probe IDs into gene symbols.
 + [**Module 2**](./Module02-DE_Analysis.ipynb) focuses on Differential Expression Analysis using `limma`, `t-test`, 
 `edgeR`, and `DESeq2`.
 + [**Module 3**](./Module03-Gene_Set_and_Pathway.ipynb) introduces common curated biological databases such as Gene Ontology (GO), Kyoto Encyclopedia of Genes and 
 Genomes (KEGG)
-+ [**Module 4**] aims at performing Enrichment Analysis methods using popular methods such as `ORA`, `FGSEA`, and `GSA`.
++ Module 4 aims at performing Enrichment Analysis methods using popular methods such as `ORA`, `FGSEA`, and `GSA`.
 
-## **Software Requirements** <a name="SOF"></a>
+## <a name="WORK">Workflow Diagrams</a>
+
+# <img src="./images/Intro/Main-img.png" width="900" height="700">
+
+As seen in the image above, we will show how to download sequence data from sources such as the GEO repository using the
+GEO website as well as the GEOquery package from the R programming language terminal.
+We will use the getGEO function of the package to download GEO datasets, as identified by the accession ID. 
+Exploration and preprocessing of the data follows, after which we export it to a desired format.
+Next, we map the probe set IDs of the datasets to Entrez gene ID to achieve uniformity, before carrying out Differential
+Gene Expression Analysis on the data, which is the focus of Module 2.
+It involves assigning samples into groups and setting up design matrix, and then performing DE analysis using limma, t-test, 
+edgeR and DESeq packages to produce results which are filtered and exported before being further visualized.
+
+Module 3 introduces Ontology, Gene Ontology and the KEGG Pathway Database. Also, terms and pathway gene sets are downloaded 
+from GO and KEGG and then the results are saved to the GMT file format. In Module 4, some Pathway Analysis methods are introduced,
+before Meta analysis methods are discussed in Module 5. 
+
+
+
+## <a name="SOF">Software Requirements</a>
 This learning module does not require any computational hardware and local environment setting from users as the 
 programs and scripts can be run in the browser-based development environment provided by Google. However, 
 users need to have Google email account, sufficient internet access, and a standard web-browser (e.g. Chrome, Edge, 
@@ -66,29 +89,12 @@ A complete workflow from setting up the environment, building the book, to uploa
 Google cloud bucket can be found here: https://github.com/tinnlab/NOSI-Google-Cloud-Training/blob/main/.github/workflows/main.yml. 
 The logs for each time it builds the book are here: https://github.com/tinnlab/NOSI-Google-Cloud-Training/actions.
 
-## **Workflow Diagrams** <a name="WORK"></a>
-
-# <img src="./images/Intro/Main-img.png" width="900" height="700">
-
-As seen in the image above, we will show how to download sequence data from sources such as the GEO repository using the
-GEO website as well as the GEOquery package from the R programming language terminal.
-We will use the getGEO function of the package to download GEO datasets, as identified by the accession ID. 
-Exploration and preprocessing of the data follows, after which we export it to a desired format.
-Next, we map the probe set IDs of the datasets to Entrez gene ID to achieve uniformity, before carrying out Differential
-Gene Expression Analysis on the data, which is the focus of Module 2.
-It involves assigning samples into groups and setting up design matrix, and then performing DE analysis using limma, t-test, 
-edgeR and DESeq packages to produce results which are filtered and exported before being further visualized.
-
-Module 3 introduces Ontology, Gene Ontology and the KEGG Pathway Database. Also, terms and pathway gene sets are downloaded 
-from GO and KEGG and then the results are saved to the GMT file format. In Module 4, some Pathway Analysis methods are introduced,
-before Meta analysis methods are discussed in Module 5. 
-
-## **Data** <a name="DATA"></a>
+## <a name="DATA">Data</a>
 All data from the modules were originally downloaded from the Gene Expression Omnibus (GEO) repository using the accession
 number GSE48350 file. The data was originally generated by **Berchtold and Cotman, 2013**. We preprocessed this data and
 normalized it, after which we used it in the subsequent analyses.
 
-## **Troubleshooting** <a name="TR"></a>
+## <a name="TR">Troubleshooting</a>
 
 Prior to publishing, some common errors frequently encountered by the early users in the workflow include syntax errors
 such as calling a library that has not been initialized.
@@ -96,13 +102,13 @@ Also, some users who were still beginners to Bioinformatics made basic errors su
 Pathways and Gene Sets, and misunderstanding what these stand for. However, this is an error that is attributed to limited 
 knowledge and is cleared by exposure to the first few sections of Module 1.
 
-## **Funding** <a name="FUND"></a>
+## <a name="FUND">Funding</a>
 
 >This work was fully supported by NIH NIGMS under grant number GM103440. Any opinions, findings, and conclusions, 
 > or recommendations expressed in this material are those of the authors and do not necessarily reflect the views 
 > of any of the funding agencies.
 
-## **(Optional, but recommended) License for Data** <a name="LIC"></a>
+## <a name="LIC">License for Data</a>
 
 Text and materials are licensed under a Creative Commons CC-BY-NC-SA license. The license allows you to copy, remix 
 and redistribute any of our publicly available materials, under the condition that you attribute the work (details in the license)
