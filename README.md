@@ -21,6 +21,7 @@ pathways and genes.
 + [Getting Started](#GS)
 + [Overview](#OV)
 + [Workflow Diagrams](#WORK)
++ [Google Cloud Architecture](#ARCH)
 + [Software Requirements](#SOF)
 + [Data](#DATA)
 + [TroubleShooting](#TR)
@@ -69,9 +70,18 @@ Module 3 introduces Ontology, Gene Ontology and the KEGG Pathway Database. Also,
 from GO and KEGG and then the results are saved to the GMT file format. In Module 4, some Pathway Analysis methods are introduced,
 before Meta analysis methods are discussed in Module 5. 
 
+## <a name="ARCH">Google Cloud Architecture</a>
 
+# <img src="./images/Intro/architecture.png" width="900" height="500">
+The figure above shows the architecture of the learning module with Google Cloud infrastructure. First, we will create
+an VertexAI workbench with R kernel. The code and instruction for each module is presented in a separate Jupyter Notebook.
+User can either upload the Notebooks to the VertexAI workbench or clone from the project repository. Then, users can execute 
+the code directly in the Notebook. In our learning course, the Module 1 will download data from the public repository (e.g. GEO database)
+for preprocessing and save the processed data to a local file in VertexAI workbench or a Google Cloud Bucket. The output
+of the Module 1 will be used as inputs for all other modules. The outputs of the Modules 2, 3, and 4 will be saved to 
+local repository in VertexAI workbench or a Google Cloud Bucket.
 
-## <a name="SOF">Software Requirements</a>
+# <a name="SOF">Software Requirements</a>
 This learning module does not require any computational hardware and local environment setting from users as the 
 programs and scripts can be run in the browser-based development environment provided by Google. However, 
 users need to have Google email account, sufficient internet access, and a standard web-browser (e.g. Chrome, Edge, 
@@ -104,9 +114,9 @@ knowledge and is cleared by exposure to the first few sections of Module 1.
 
 ## <a name="FUND">Funding</a>
 
->This work was fully supported by NIH NIGMS under grant number GM103440. Any opinions, findings, and conclusions, 
-> or recommendations expressed in this material are those of the authors and do not necessarily reflect the views 
-> of any of the funding agencies.
+This work was fully supported by NIH NIGMS under grant number GM103440. Any opinions, findings, and conclusions, 
+or recommendations expressed in this material are those of the authors and do not necessarily reflect the views 
+of any of the funding agencies.
 
 ## <a name="LIC">License for Data</a>
 
