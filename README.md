@@ -51,7 +51,7 @@ describes how to obtain data from public repository, process and save the expres
 `edgeR`, and `DESeq2`.
 + [**Module 3**](./Module03-Gene_Set_and_Pathway.ipynb) introduces common curated biological databases such as Gene Ontology (GO), Kyoto Encyclopedia of Genes and 
 Genomes (KEGG)
-+ Module 4 aims at performing Enrichment Analysis methods using popular methods such as `ORA`, `FGSEA`, and `GSA`.
++ [**Module 4**](./Module04-Pathway_Analysis.ipynb) aims at performing Enrichment Analysis methods using popular methods such as `ORA`, `FGSEA`, and `GSA`.
 
 ## <a name="WORK">Workflow Diagrams</a>
 
