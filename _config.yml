@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: Consensus Pathway Analysis using Google Cloud Infrastructure
-author: Bang Tran, Hung Nguyen, juli Petereit, and Tin Nguyen
+author: Bang Tran, Hung Nguyen, Juli Petereit, and Tin Nguyen
 copyright: "2022"  # Copyright year to be placed in the footer
 logo: ./images/Logo/Cover.png
 
