@@ -1,10 +1,11 @@
 # Consensus Pathway Analysis using Google Cloud Infrastructure
 
-This cloud-based learning module teaches Pathway Analysis, a term that describes the set of tools and techniques used in
-life sciences research to discover the biological mechanism behind a condition from high throughput biological data. 
-Pathway Analysis tools are primarily used to analyze these omics datasets to detect relevant groups of genes that are 
-altered in case samples when compared to a control group. Pathway Analysis approaches make use of already existing pathway 
-databases and given gene expression data to identify the pathways which are significantly impacted in a given condition.
+This cloud-based learning module provided detailed tutorials for Consensus Pathway Analysis, a term that describes the 
+set of tools and techniques used in life sciences research to discover the biological mechanism behind a condition from 
+high throughput biological data. Pathway Analysis tools are primarily used to analyze these omics datasets to detect 
+relevant groups of genes that are altered in case samples when compared to a control group. Pathway Analysis approaches 
+make use of already existing pathway databases and given gene expression data to identify the pathways which are 
+significantly impacted in a given condition.
 
 The course is structured such that the content will be arranged in five sub-modules which allows us to:
 1. Download and process data from public repositories,
@@ -15,9 +16,7 @@ The course is structured such that the content will be arranged in five sub-modu
 pathways and genes.
 
 
-## Overview of Page Contents
-
-
+## Table of Contents
 + [Getting Started](#GS)
 + [Overview](#OV)
 + [Workflow Diagrams](#WORK)
@@ -44,14 +43,14 @@ the content can be found at: https://jupyterbook.org/en/stable/intro.html. The c
 Github repository of Dr. Tin Nguyen's lab, and can be found at https://github.com/tinnlab/NOSI-Google-Cloud-Training.
 The overall idea of the modules are explained below:
 
-+ Module 1 has two sub-modules. The first sub-module [**GEO data processing**](./Module01-GEO_Data_Processing.ipynb)
-describes how to obtain data from public repository, process and save the expression matrix while the second sub-module 
-[**Gene Mapping**](./Module01-Gene_Mapping.ipynb) shows how to map probe IDs into gene symbols.
-+ [**Module 2**](./Module02-DE_Analysis.ipynb) focuses on Differential Expression Analysis using `limma`, `t-test`, 
++ [**Sub-module 01**](./Module01-GEO_Data_Processing.ipynb) describes how to obtain data from public repository, 
+process, save the expression matrix, and shows how to map probe IDs into gene symbols.
++ [**Sub-module 02**](./Module02-DE_Analysis.ipynb) focuses on Differential Expression Analysis using `limma`, `t-test`, 
 `edgeR`, and `DESeq2`.
-+ [**Module 3**](./Module03-Gene_Set_and_Pathway.ipynb) introduces common curated biological databases such as Gene Ontology (GO), Kyoto Encyclopedia of Genes and 
-Genomes (KEGG)
-+ [**Module 4**](./Module04-Pathway_Analysis.ipynb) aims at performing Enrichment Analysis methods using popular methods such as `ORA`, `FGSEA`, and `GSA`.
++ [**Sub-module 03**](./Module03-Gene_Set_and_Pathway.ipynb) introduces common curated biological databases such as 
+Gene Ontology (GO), Kyoto Encyclopedia of Genes and Genomes (KEGG)
++ [**Sub-module 04**](./Module04-Pathway_Analysis.ipynb) aims at performing Enrichment Analysis methods using popular 
+methods such as `ORA`, `FGSEA`, and `GSA`.
 
 ## <a name="WORK">Workflow Diagrams</a>
 

@@ -8,19 +8,18 @@ parts:
     chapters:
       - file: VertexAI
 
-  - caption: Module 01
+  - caption: Sub-module 01
     chapters:
       - file: Module01-GEO_Data_Processing
-      - file: Module01-Gene_Mapping
 
-  - caption: Module 02
+  - caption: Sub-module 02
     chapters:
       - file: Module02-DE_Analysis
 
-  - caption: Module 03
+  - caption: Sub-module 03
     chapters:
       - file: Module03-Gene_Set_and_Pathway
 
-  - caption: Module 04
+  - caption: Sub-module 04
     chapters:
       - file: Module04-Pathway_Analysis
