@@ -56,14 +56,16 @@ Genomes (KEGG)
 ## <a name="BUCKETS">Creating Google Cloud Storage Buckets</a>
 In this section,we will describe the steps to take to create Google Cloud Storage Buckets to store our data.
 This can be achieved using GUI or using the command line.
-To use the GUI, the user has to first visit the url https://console.cloud.google.com/storage/,  sign in and then click the
-"CREATE" button below the search bar.
-# <img src="./images/Bucket/Step1.png" width="900" height="700">
+To use the GUI, the user has to first visit the url https://console.cloud.google.com/storage/,  sign in, click on buckets on the left menu bar.
+# <img src="./images/Bucket/Step0.png" width="900" height="250">
+
+Next, the user has to click on the "CREATE" button below the search bar.
+# <img src="./images/Bucket/Step1.png" width="900" height="250">
 
 This will then open the page where the user will supply the name of the bucket, the
 location, access control and other information about the bucket. After this the user will 
 click on the "CREATE" button to complete the process.
-# <img src="./images/Bucket/Step2.png" width="900" height="700">
+# <img src="./images/Bucket/Step2.png" width="900" height="350">
 
 However, to create a Bucket using the command line, the user can use the gcloud storage buckets `create` command
 `gcloud storage buckets create gs://BUCKET_NAME` where `BUCKET_NAME` is the user-defined name. 
