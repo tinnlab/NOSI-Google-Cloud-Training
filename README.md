@@ -1,4 +1,5 @@
 # Consensus Pathway Analysis using Google Cloud Infrastructure
+Authors: Bang Tran, Hung Nguyen, Juli Petereit, and Tin Nguyen
 
 This Cloud-based learning module teaches Pathway Analysis, a term that describes the set of tools and techniques used in
 life sciences research to discover the biological mechanism behind a condition from high throughput biological data. 
@@ -14,12 +15,9 @@ The course is structured such that the content will be arranged in five Sub-Modu
 5. Interactively explore significantly impacted pathways across multiple analyses, and browsing relationships between 
 pathways and genes.
 
-
 ## Overview of Page Contents
 
-
 + [Getting Started](#GS)
-+ [Overview](#OV)
 + [Google Cloud Buckets](#BUCKET)
 + [Workflow Diagrams](#WORK)
 + [Google Cloud Architecture](#ARCH)
@@ -29,44 +27,125 @@ pathways and genes.
 + [Funding](#FUND)
 + [License](#LIC)
 
-
 ## <a name="GS">Getting Started</a>
-Each learning submodule will be organized in a R Jupyter notebook to help the participants familiarize themselves 
-with the cloud computing in the specific context of running bioinformatics workflows. Each notebook will include 
-step-by-step hands-on practice with R command line to install necessary tools, obtain data, perform analyses, visualize 
-and interpret the results.
+Each learning submodules will be organized in a R Jupyter notebook with step-by-step hands-on practice with R command 
+line to install necessary tools, obtain data, perform analyses, visualize and interpret the results. The notebook will 
+be executed in the Google Cloud environment. Therefore, the first step is to setup a virtual machine VertexAI.
 
+### Signing in Google Cloud Platform
+You can begin by first navigating to https://console.cloud.google.com/ and logging in with your credentials. 
 
-## <a name='OV'>Overview</a>
+![](./images/SettingGC/Login.png)
+
+After a few moments, the GCP console opens with following dashboard.
+
+![](./images/SettingGC/Dashboard.png)
+
+### Navigating to the Vertex AI Workbench
+
+Once the login process is done, we can create a virtual machine for analysis using Vertex AI Workbench. 
+There are two ways to navigate to Vertex AI. In the first method, we can click the __Navigation menu__ at the top-left, 
+next to “Google Cloud Platform”. Then, navigate to <a href="https://console.cloud.google.com/vertex-ai">Vertex AI</a> 
+and select <a href="https://console.cloud.google.com/vertex-ai/workbench">Workbench</a>. In the second method, we can 
+ go to __Google Cloud Console Menu__ in the __Search products and resources__, enter "Workbench" and then select 
+__Workbench Vertex AI__.
+
+![](./images/SettingGC/Vertex-1.png)
+
+If it isn't already enabled we click __Enable__ to start using the API.
+
+![](./images/SettingGC/Enable_API.png)
+
+### Creating a Virtual Machine
+
+Within the Workbench screen, click __MANAGED NOTEBOOKS__, select the region which is closed to your physicall location 
+and click __CREATE NOTEBOOK__. Since our analyses will be based on R programing language, we need to select R 4.1 as 
+our development environment. Then, set a name for your virutal machine and select the server which is closed to you 
+physical location. In our learning module, a default machine with 4 vCPUS and 15GB RAM would be suffice. Finally, 
+click __CREATE__ to get the new machine up and running.
+
+![](./images/SettingGC/Create_Notebook.png)
+
+Creating a machine may take a few minutes to finish and you should see a new notebook with your designed name appears 
+within the workbench dashboard when the process is completed. 
+
+![](./images/SettingGC/New_Notebook.png)
+
+To start the virtual machine, select your notebook in the __USER-MANAGED NOTESBOOK__ and click on __START__ button 
+on the top menu bar. The starting process might take up to several minutes. When it is done, the green checkmark 
+indicates that your virtual machine is running.  Next, clicking __OPEN JUPYTER LAB__ to access the notebook.
+
+![](./images/SettingGC/Start_Machine.png)
+
+### Downloading and Running Tutorial Files
+
+Now that you have successfully created your virtual machine, and you will be directed to Jupyterlab screen. 
+The next step is to import our CPA's notebooks start the course. 
+This can be done by selecting the __Git__ from the top menu in Jupyterlab, and choosing the __Clone a Repository__ 
+option. 
+Next you can copy and paste in the link of repository: "https://github.com/tinnlab/NOSI-Google-Cloud-Training.git" 
+(without quotation marks) and click __Clone__.
+
+![](./images/SettingGC/Clone_Git.png)
+
+This should download our repository to Jupyter Lab folder. All tutorial files for five sub-moudule are in Jupyter 
+format with *.ipynv* extension . Double click on each file to view the lab content and running the code. This will 
+open the Jupyter file in Jupyter notebook. From here you can run each section, or 'cell', of the code, one by one, 
+by pushing the 'Play' button on the above menu.
+
+![](./images/SettingGC/Run_Cell.png)
+
+Some 'cells' of code take longer for the computer to process than others. You will know a cell is running when a cell 
+has an asterisk next to it \[\*\]. When the cell finishes running, that asterisk will be replaced with a number which 
+represents the order that cell was run in. You can now explore the tutorials by running the code in each, from top to 
+bottom. Look at the 'workflows' section below for a short description of each tutorial.
+
+Jupyter is a powerful tool, with many useful features. For more information on how to use Jupyter, we recommend 
+searching for Jupyter tutorials and literature online.
+
+### Stopping Your Virtual Machine
+
+When you are finished running code, you should turn off your virtual machine to prevent unneeded billing or resource 
+use by checking your notebook and pushing the __STOP__ button.
+
+## <a name="WORK">Workflow Diagrams</a>
 
 The content of the course is organized in R Jupyter Notebooks. Then we use Jupyter Book which is a package to combine 
 individuals Jupyter Notebooks into a web-interface for a better navigation. Details of installing the tools and formatting
 the content can be found at: https://jupyterbook.org/en/stable/intro.html. The content of the course is reposed in the 
 Github repository of Dr. Tin Nguyen's lab, and can be found at https://github.com/tinnlab/NOSI-Google-Cloud-Training.
-The overall idea of the modules are explained below:
+The overall structure of the modules is explained below:
 
-+ [**Sub-Module 1**](./Module01-GEO_Data_Processing.ipynb) describes how to obtain data from public repository, process and save the expression matrix and shows how to map probe IDs into gene symbols.
++ [**Sub-Module 1**](./Module01-GEO_Data_Processing.ipynb) describes how to obtain data from public repository, process 
++ and save the expression matrix and shows how to map probe IDs into gene symbols.
 + [**Sub-Module 2**](./Module02-DE_Analysis.ipynb) focuses on Differential Expression Analysis using `limma`, `t-test`, 
 `edgeR`, and `DESeq2`.
-+ [**Sub-Module 3**](./Module03-Gene_Set_and_Pathway.ipynb) introduces common curated biological databases such as Gene Ontology (GO), Kyoto Encyclopedia of Genes and 
++ [**Sub-Module 3**](./Module03-Gene_Set_and_Pathway.ipynb) introduces common curated biological databases such as Gene 
++ Ontology (GO), Kyoto Encyclopedia of Genes and 
 Genomes (KEGG)
-+ [**Sub-Module 4**](./Module04-Pathway_Analysis.ipynb) aims at performing Enrichment Analysis methods using popular methods such as `ORA`, `FGSEA`, and `GSA`.
++ [**Sub-Module 4**](./Module04-Pathway_Analysis.ipynb) aims at performing Enrichment Analysis methods using popular 
++ methods such as `ORA`, `FGSEA`, and `GSA`.
+
+# <img src="./images/Intro/Main-img.png" width="900" height="550">
 
 ## <a name="BUCKET">Creating Google Cloud Storage Buckets</a>
-In this section,we will describe the steps to take to create Google Cloud Storage Buckets to store our data.
-This can be achieved using GUI or using the command line.
-To use the GUI, the user has to first visit the url https://console.cloud.google.com/storage/,  sign in, click on buckets on the left menu bar.
-# <img src="./images/Bucket/Step0.png">
+In this section, we will describe the steps to create Google Cloud Storage Buckets to store data generated during 
+analysis.  The bucket can be created via GUI or using the command line.
+To use the GUI, the user has to first visit https://console.cloud.google.com/storage/, sign in, click on __Buckets__ 
+on the left menu.
 
-Next, the user has to click on the "CREATE" button below the search bar.
+# <img src="./images/Bucket/Step0.png">
+Next, click on the __CREATE__ button below the search bar to start creating a new bucket.
+
 # <img src="./images/Bucket/Step1.png">
 
-This will then open the page where the user will supply the name of the bucket, the
-location, access control and other information about the bucket. After this the user will 
-click on the "CREATE" button to complete the process.
+This will then open a page where the user will provide the unique name of the bucket, the
+location, access control and other information about the bucket. Here, we named our bucket as _cpa-output_. After this 
+the user will click on the __CREATE__ button to complete the process.
+
 # <img src="./images/Bucket/Step2.png">
 
-However, to create a Bucket using the command line, the user can use the gcloud storage buckets `create` command
+To create a Bucket using the command line, the user can use the gcloud storage buckets `create` command
 `gcloud storage buckets create gs://BUCKET_NAME` where `BUCKET_NAME` is the user-defined name. 
 If the request succeeds, the user gets a success message. The user can also add optional flags
 while running the `create command ` to have greater control over the creation of the bucket.
@@ -76,25 +155,9 @@ and `--uniform-bucket-level-access` with `PROJECT_NAME` and `STORAGE_CLASS` supp
 Storage Buckets can also be created on the command line using the `gsutils mb` command.
 The command to do so is `gsutil mb gs://BUCKET_NAME`, with `BUCKET_NAME` the desired bucket name.
 This command also returns a success message upon completion and can also take optional flags 
-`-p`, `-c`, `-l`, `-b` and their user-supplied values, corresponding to project ID or number, default storage class, location of the bucket and 
+`-p`, `-c`, `-l`, `-b` and their user-supplied values, corresponding to project ID or number, default storage class, 
+location of the bucket and 
 uniform bucket-level access respectively, just like the `create` command.
-
-## <a name="WORK">Workflow Diagrams</a>
-
-# <img src="./images/Intro/Main-img.png" width="900" height="700">
-
-As seen in the image above, we will show how to download sequence data from sources such as the GEO repository using the
-GEO website as well as the GEOquery package from the R programming language terminal.
-We will use the getGEO function of the package to download GEO datasets, as identified by the accession ID. 
-Exploration and preprocessing of the data follows, after which we export it to a desired format.
-Next, we map the probe set IDs of the datasets to Entrez gene ID to achieve uniformity, before carrying out Differential
-Gene Expression Analysis on the data, which is the focus of Module 2.
-It involves assigning samples into groups and setting up design matrix, and then performing DE analysis using limma, t-test, 
-edgeR and DESeq packages to produce results which are filtered and exported before being further visualized.
-
-Module 3 introduces Ontology, Gene Ontology and the KEGG Pathway Database. Also, terms and pathway gene sets are downloaded 
-from GO and KEGG and then the results are saved to the GMT file format. In Module 4, some Pathway Analysis methods are introduced,
-before Meta analysis methods are discussed in Module 5. 
 
 ## <a name="ARCH">Google Cloud Architecture</a>
 
