@@ -15,7 +15,7 @@ jobs:
       run: |
         sudo add-apt-repository ppa:c2d4u.team/c2d4u4.0+
         sudo apt-get update
-        sudo apt-get install -y r-cran-irkernel libcurl4-openssl-dev r-cran-biocmanager r-bioc-geoquery r-bioc-annotationdbi r-bioc-org.hs.eg.db
+        sudo apt-get install -y r-cran-irkernel libcurl4-openssl-dev 
         
     - name: Setup R lib paths
       run: |
