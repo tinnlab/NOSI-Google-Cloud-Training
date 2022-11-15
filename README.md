@@ -30,7 +30,7 @@ pathways and genes.
 ## <a name="GS">Getting Started</a>
 Each learning submodules will be organized in a R Jupyter notebook with step-by-step hands-on practice with R command 
 line to install necessary tools, obtain data, perform analyses, visualize and interpret the results. The notebook will 
-be executed in the Google Cloud environment. Therefore, the first step is to setup a virtual machine VertexAI.
+be executed in the Google Cloud environment. Therefore, the first step is to set up a virtual machine VertexAI.
 
 ### Signing in Google Cloud Platform
 You can begin by first navigating to https://console.cloud.google.com/ and logging in with your credentials. 
