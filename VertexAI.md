@@ -20,7 +20,7 @@ __Workbench Vertex AI__.
 
 ![](./images/SettingGC/Vertex-1.png)
 
-If it isn't already enabled we click __Enable__ to start using the API.
+If it isn't enabled we can click __Enable__ to start using the API.
 
 ![](./images/SettingGC/Enable_API.png)
 
