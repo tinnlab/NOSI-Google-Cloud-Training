@@ -7,7 +7,7 @@ Pathway Analysis tools are primarily used to analyze these omics datasets to det
 altered in case samples when compared to a control group. Pathway Analysis approaches make use of already existing pathway 
 databases and given gene expression data to identify the pathways which are significantly impacted in a given condition.
 
-The course is structured such that the content will be arranged in five Sub-Modules which allows us to:
+The course is structured such that the content will be arranged in five subm odules which allows us to:
 1. Download and process data from public repositories,
 2. Perform differential analysis,
 3. Perform pathway analysis using different methods that seek to answer different research hypotheses,
@@ -58,7 +58,7 @@ If it isn't already enabled we click __Enable__ to start using the API.
 
 ### Creating a Virtual Machine
 
-Within the Workbench screen, click __MANAGED NOTEBOOKS__, select the region which is closed to your physicall location 
+Within the Workbench screen, click __MANAGED NOTEBOOKS__, select the region which is closed to your physical location 
 and click __CREATE NOTEBOOK__. Since our analyses will be based on R programing language, we need to select R 4.1 as 
 our development environment. Then, set a name for your virutal machine and select the server which is closed to you 
 physical location. In our learning module, a default machine with 4 vCPUS and 15GB RAM would be suffice. Finally, 
@@ -88,7 +88,7 @@ Next you can copy and paste in the link of repository: "https://github.com/tinnl
 
 ![](./images/SettingGC/Clone_Git.png)
 
-This should download our repository to Jupyter Lab folder. All tutorial files for five sub-moudule are in Jupyter 
+This should download our repository to Jupyterlab folder. All tutorial files for five sub-moudule are in Jupyter 
 format with *.ipynv* extension . Double click on each file to view the lab content and running the code. This will 
 open the Jupyter file in Jupyter notebook. From here you can run each section, or 'cell', of the code, one by one, 
 by pushing the 'Play' button on the above menu.
@@ -116,14 +116,14 @@ the content can be found at: https://jupyterbook.org/en/stable/intro.html. The c
 Github repository of Dr. Tin Nguyen's lab, and can be found at https://github.com/tinnlab/NOSI-Google-Cloud-Training.
 The overall structure of the modules is explained below:
 
-+ [**Sub-Module 1**](./Module01-GEO_Data_Processing.ipynb) describes how to obtain data from public repository, process 
++ [**Submodule 01**](./Module01-GEO_Data_Processing.ipynb) describes how to obtain data from public repository, process 
 + and save the expression matrix and shows how to map probe IDs into gene symbols.
-+ [**Sub-Module 2**](./Module02-DE_Analysis.ipynb) focuses on Differential Expression Analysis using `limma`, `t-test`, 
++ [**Submodule 02**](./Module02-DE_Analysis.ipynb) focuses on Differential Expression Analysis using `limma`, `t-test`, 
 `edgeR`, and `DESeq2`.
-+ [**Sub-Module 3**](./Module03-Gene_Set_and_Pathway.ipynb) introduces common curated biological databases such as Gene 
++ [**Submodule 03**](./Module03-Gene_Set_and_Pathway.ipynb) introduces common curated biological databases such as Gene 
 + Ontology (GO), Kyoto Encyclopedia of Genes and 
 Genomes (KEGG)
-+ [**Sub-Module 4**](./Module04-Pathway_Analysis.ipynb) aims at performing Enrichment Analysis methods using popular 
++ [**Submodule 04**](./Module04-Pathway_Analysis.ipynb) aims at performing Enrichment Analysis methods using popular 
 + methods such as `ORA`, `FGSEA`, and `GSA`.
 
 # <img src="./images/Intro/Main-img.png" width="900" height="550">
@@ -165,13 +165,13 @@ uniform bucket-level access respectively, just like the `create` command.
 The figure above shows the architecture of the learning module with Google Cloud infrastructure. First, we will create
 an VertexAI workbench with R kernel. The code and instruction for each Sub-Module is presented in a separate Jupyter Notebook.
 User can either upload the Notebooks to the VertexAI workbench or clone from the project repository. Then, users can execute 
-the code directly in the Notebook. In our learning course, the Sub-Module 1 will download data from the public repository (e.g. GEO database)
+the code directly in the Notebook. In our learning course, the submodule 01 will download data from the public repository (e.g. GEO database)
 for preprocessing and save the processed data to a local file in VertexAI workbench and to the user's Google Cloud Storage Bucket. The output
-of the Sub-Module 1 will be used as inputs for all other Sub-Modules. The outputs of the Sub-Modules 2, 3, and 4 will be saved to 
+of the submodule 01 will be used as inputs for all other submodules. The outputs of the submodules 02, 03, and 04 will be saved to 
 local repository in VertexAI workbench and the code to copy them to the user's Cloud Bucket is also included.
 
 # <a name="SOF">Software Requirements</a>
-This learning Module does not require any computational hardware and local environment setting from users as the 
+This learning module does not require any computational hardware and local environment setting from users as the 
 programs and scripts can be run in the browser-based development environment provided by Google. However, 
 users need to have Google email account, sufficient internet access, and a standard web-browser (e.g. Chrome, Edge, 
 Firefox etc., Chrome browser is recommended) to create a Cloud Virtual Machine for analysis.
@@ -199,7 +199,7 @@ Prior to publishing, some common errors frequently encountered by the early user
 such as calling a library that has not been initialized.
 Also, some users who were still beginners to Bioinformatics made basic errors such as confusing the meanings of terms such as 
 Pathways and Gene Sets, and misunderstanding what these stand for. However, this is an error that is attributed to limited 
-knowledge and is cleared by exposure to the first few sections of Sub-Module 1.
+knowledge and is cleared by exposure to the first few sections of submodule 01.
 
 ## <a name="FUND">Funding</a>
 
