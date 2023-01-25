@@ -17,6 +17,11 @@
                 "answer": "DESeq2",
                 "correct": false,
                 "feedback": "Incorrect"
+            },
+                 {
+                "answer": "T-test",
+                "correct": false,
+                "feedback": "Incorrect"
             }
         ]
     }
