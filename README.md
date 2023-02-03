@@ -1,5 +1,5 @@
 # Consensus Pathway Analysis using Google Cloud Infrastructure
-Authors: Bang Tran, Hung Nguyen, Juli Petereit, and Tin Nguyen
+Authors: Bang Tran, Hung Nguyen, Nicole Schrad, Juli Petereit, and Tin Nguyen
 
 This Cloud-based learning module teaches Pathway Analysis, a term that describes the set of tools and techniques used in
 life sciences research to discover the biological mechanism behind a condition from high throughput biological data. 
@@ -7,7 +7,7 @@ Pathway Analysis tools are primarily used to analyze these omics datasets to det
 altered in case samples when compared to a control group. Pathway Analysis approaches make use of already existing pathway 
 databases and given gene expression data to identify the pathways which are significantly impacted in a given condition.
 
-The course is structured such that the content will be arranged in five subm odules which allows us to:
+The course is structured such that the content will be arranged in five submodules which allows us to:
 1. Download and process data from public repositories,
 2. Perform differential analysis,
 3. Perform pathway analysis using different methods that seek to answer different research hypotheses,
