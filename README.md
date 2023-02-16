@@ -195,11 +195,7 @@ normalized it, after which we used it in the subsequent analyses.
 
 ## <a name="TR">Troubleshooting</a>
 
-Prior to publishing, some common errors frequently encountered by the early users in the workflow include syntax errors
-such as calling a library that has not been initialized.
-Also, some users who were still beginners to Bioinformatics made basic errors such as confusing the meanings of terms such as 
-Pathways and Gene Sets, and misunderstanding what these stand for. However, this is an error that is attributed to limited 
-knowledge and is cleared by exposure to the first few sections of submodule 01.
+Some common errors include having the Jupyter Notebook kernel defaulting to Python and libraries not loading properly. To fix the kernel, check that the upper right hand corner of the edit ribbon says "R". If it doesn't, you can click the words next to the circle (O) to change the kernel.  When there are problems loading a library, check that the package has been properly installed. Packages can usually be downloaded by the instructions in the documentation. Other errors that may happen are usually due to grammatical errors such as capitialization or spelling errors. 
 
 ## <a name="FUND">Funding</a>
 
