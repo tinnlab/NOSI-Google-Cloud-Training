@@ -125,6 +125,7 @@ The overall structure of the modules is explained below:
 Genomes (KEGG)
 + [**Submodule 04**](./Module04-Pathway_Analysis.ipynb) aims at performing Enrichment Analysis methods using popular 
 + methods such as `ORA`, `FGSEA`, and `GSA`.
++ [**Submodule 05**](./Module05-Meta_Analysis.ipynb) aims at performing Enrichment Analysis using multiple datasets.
 
 # <img src="./images/Intro/Main-img.png" width="900" height="550">
 
@@ -174,19 +175,27 @@ local repository in VertexAI workbench and the code to copy them to the user's C
 This learning module does not require any computational hardware and local environment setting from users as the 
 programs and scripts can be run in the browser-based development environment provided by Google. However, 
 users need to have Google email account, sufficient internet access, and a standard web-browser (e.g. Chrome, Edge, 
-Firefox etc., Chrome browser is recommended) to create a Cloud Virtual Machine for analysis.
-
-The Jupyter Book will run and test all codes in our notebooks and then build them into a website format. 
-The website output is the `_build/html` folder in the repository. After the `_build/html` is completely built, the web 
-version of the book will be uploaded from the `_build/html` folder to a Google bucket. 
-The address of the cloud bucket can be found at: https://storage.googleapis.com/nosi-gcloud-course/html/intro.html. 
-The link http://tinnguyen-lab.com/course/cpa-gcloud/intro.html is just a proxy to that link using Dr. Tin Nguyen's Lab
-domain name. It is recommended to execute the Jupyter Note Book using R kernel version > 4.1 using a standard machine 
+Firefox etc., Chrome browser is recommended) to create a Cloud Virtual Machine for analysis. It is recommended to 
+execute the Jupyter Note Book using R kernel version > 4.1 using a standard machine 
 with minimum configuration of 4 vCPUs, 15 GB RAM, and 10GB of HDD.
 
-A complete workflow from setting up the environment, building the book, to uploading the website to 
-Google cloud bucket can be found here: https://github.com/tinnlab/NOSI-Google-Cloud-Training/blob/main/.github/workflows/main.yml. 
-The logs for each time it builds the book are here: https://github.com/tinnlab/NOSI-Google-Cloud-Training/actions.
+[//]: # (The Jupyter Book will run and test all codes in our notebooks and then build them into a website format. )
+
+[//]: # (The website output is the `_build/html` folder in the repository. After the `_build/html` is completely built, the web )
+
+[//]: # (version of the book will be uploaded from the `_build/html` folder to a Google bucket. )
+
+[//]: # (The address of the cloud bucket can be found at: https://storage.googleapis.com/nosi-gcloud-course/html/intro.html. )
+
+[//]: # (The link http://tinnguyen-lab.com/course/cpa-gcloud/intro.html is just a proxy to that link using Dr. Tin Nguyen's Lab)
+
+[//]: # (domain name. )
+[//]: # ()
+[//]: # (A complete workflow from setting up the environment, building the book, to uploading the website to )
+
+[//]: # (Google cloud bucket can be found here: https://github.com/tinnlab/NOSI-Google-Cloud-Training/blob/main/.github/workflows/main.yml. )
+
+[//]: # (The logs for each time it builds the book are here: https://github.com/tinnlab/NOSI-Google-Cloud-Training/actions.)
 
 ## <a name="DATA">Data</a>
 All data from the modules were originally downloaded from the Gene Expression Omnibus (GEO) repository using the accession
@@ -195,7 +204,11 @@ normalized it, after which we used it in the subsequent analyses.
 
 ## <a name="TR">Troubleshooting</a>
 
-Some common errors include having the Jupyter Notebook kernel defaulting to Python and libraries not loading properly. To fix the kernel, check that the upper right hand corner of the edit ribbon says "R". If it doesn't, you can click the words next to the circle (O) to change the kernel.  When there are problems loading a library, check that the package has been properly installed. Packages can usually be downloaded by the instructions in the documentation. Other errors that may happen are usually due to grammatical errors such as capitialization or spelling errors. 
+Some common errors include having the Jupyter Notebook kernel defaulting to Python and libraries not loading properly. 
+To fix the kernel, check that the upper right hand corner of the edit ribbon says "R". 
+If it doesn't, you can click the words next to the circle (O) to change the kernel. When there are problems loading a library, check that the package has been properly installed. 
+Packages can usually be downloaded by the instructions in the documentation. 
+Other errors that may happen are usually due to grammatical errors such as capitialization or spelling errors. 
 
 ## <a name="FUND">Funding</a>
 
