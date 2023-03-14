@@ -7,6 +7,8 @@ Pathway Analysis tools are primarily used to analyze these omics datasets to det
 altered in case samples when compared to a control group. Pathway Analysis approaches make use of already existing pathway 
 databases and given gene expression data to identify the pathways which are significantly impacted in a given condition.
 
+![](./content/Intro.mp4)
+
 The course is structured such that the content will be arranged in five submodules which allows us to:
 1. Download and process data from public repositories,
 2. Perform differential analysis,
@@ -125,7 +127,7 @@ The overall structure of the modules is explained below:
 Genomes (KEGG)
 + [**Submodule 04**](./Module04-Pathway_Analysis.ipynb) aims at performing Enrichment Analysis methods using popular 
 + methods such as `ORA`, `FGSEA`, and `GSA`.
-+ [**Submodule 05**](./Module05-Meta_Analysis.ipynb) aims at performing Enrichment Analysis using multiple datasets.
++ [**Submodule 05**](./Module05-Meta_Analysis.ipynb) aims at performing Meta-analysis using multiple datasets.
 
 # <img src="./images/Intro/Main-img.png" width="900" height="550">
 
