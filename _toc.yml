@@ -1,0 +1,29 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Getting Started
+    chapters:
+      - file: VertexAI
+
+  - caption: Sub-module 01
+    chapters:
+      - file: Module01-GEO_Data_Processing
+
+  - caption: Sub-module 02
+    chapters:
+      - file: Module02-DE_Analysis
+
+  - caption: Sub-module 03
+    chapters:
+      - file: Module03-Gene_Set_and_Pathway
+
+  - caption: Sub-module 04
+    chapters:
+      - file: Module04-Pathway_Analysis
+
+  - caption: Sub-module 05
+    chapters:
+      - file: Module05-Meta_Analysis
